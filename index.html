@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="profilepic.png">
+
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -22,6 +24,15 @@
         <div class="linkbox"><a href="/docs/index.html">Docs</a></div>
         <div class="linkbox"><a href="/about.html">About</a></div>
         <div class="linkbox"><a href="/play.html">Play</a></div>
+    </div>
+    <div id="items"></div>
+    <!-- Shop modal (hidden until an item is clicked) -->
+    <div id="shop-modal" class="hidden" aria-hidden="true">
+        <div class="shop-dialog" role="dialog" aria-modal="true" aria-labelledby="shop-title">
+            <button id="shop-close" class="shop-close" aria-label="Close shop">×</button>
+            <h2 id="shop-title">Shop</h2>
+            <div id="shop-content"></div>
+        </div>
     </div>
 </body>
 </html>

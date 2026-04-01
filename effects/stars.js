@@ -45,15 +45,8 @@ class Star {
             const dy = this.pos.y - window.mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < SETTINGS.STAR_SIZE_MAX + 10) {
-                // Spawn fragments
-                for (let i = 0; i < SETTINGS.FRAGMENTS_PER_STAR; i++) {
-                    const angle = Math.random() * 2 * Math.PI;
-                    const speed = Math.random() * 100 + 50;
-                    const size = this.size / 4;
-                    this.starGroup.fragments.push(new StarFragment(this.starGroup, {x: this.pos.x, y: this.pos.y}, size, speed, angle));
-                }
-                window.saver.setData('starfragments', (window.saver.getData('items/starfragments') || 0) + 1);
-                this.starGroup.remove(this);
+                // Collect this star (spawn visual fragments + increment stored fragments)
+                this.starGroup.collectStar(this)
             }
         }
     }
@@ -84,7 +77,15 @@ export class StarGroup {
         for (const fragment of this.fragments) {
             fragment.update(deltaTime);
         }
-        if (this.stars.length < SETTINGS.STAR_COUNT) {
+        // desired star count may be modified by upgrades (harvester shop 'starCount' stat)
+        let desiredCount = SETTINGS.STAR_COUNT
+        try {
+            if (window.upgrades && typeof window.upgrades.getStat === 'function') {
+                const v = window.upgrades.getStat('harvesters', 'starCount', SETTINGS.STAR_COUNT)
+                if (!Number.isNaN(Number(v))) desiredCount = Math.max(0, Math.floor(Number(v)))
+            }
+        } catch (e) {}
+        if (this.stars.length < desiredCount) {
             this.add(new Star(this));
         }
 
@@ -99,5 +100,22 @@ export class StarGroup {
         for (const fragment of this.fragments) {
             fragment.draw(ctx);
         }
+    }
+
+    collectStar(star) {
+        // spawn visual fragments (flair)
+        const fragmentsToSpawn = SETTINGS.FRAGMENTS_PER_STAR
+        for (let i = 0; i < fragmentsToSpawn; i++) {
+            const angle = Math.random() * 2 * Math.PI;
+            const speed = Math.random() * 100 + 50;
+            const size = star.size / 4;
+            this.fragments.push(new StarFragment(this, {x: star.pos.x, y: star.pos.y}, size, speed, angle));
+        }
+        // stored gain from upgrades (affects player inventory)
+        const storeGain = (window.upgrades && typeof window.upgrades.getStat === 'function')
+            ? Math.max(0, Math.floor(window.upgrades.getStat('starfragments', 'fragmentsPerStar', 1)))
+            : 1
+        window.saver.setData('items/starfragments', (window.saver.getData('items/starfragments') || 0) + storeGain);
+        this.remove(star)
     }
 }

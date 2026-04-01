@@ -12,40 +12,40 @@
 */
 
 class Saver {
-  constructor({dbName = '100sidedice_saves', storeName = 'saves', saveId = 'default'} = {}) {
-    this.dbName = dbName;
-    this.storeName = storeName;
-    this.saveId = saveId;
-    this.data = {};
-    this._db = null;
-    this.ready = this._init();
-  }
-
-  async _init() {
-    this._db = await this._openDB();
-    const saved = await this._get(this.saveId);
-    if (saved && typeof saved === 'object') {
-      this.data = saved;
-    } else {
-      this.data = {};
-      await this._put(this.saveId, this.data);
+    constructor({dbName = '100sidedice_saves', storeName = 'saves', saveId = 'default'} = {}) {
+        this.dbName = dbName;
+        this.storeName = storeName;
+        this.saveId = saveId;
+        this.data = {};
+        this._db = null;
+        this.ready = this._init();
     }
-    return this;
-  }
 
-  _openDB() {
+    async _init() {
+        this._db = await this._openDB();
+        const saved = await this._get(this.saveId);
+        if (saved && typeof saved === 'object') {
+            this.data = saved;
+        } else {
+            this.data = {};
+            await this._put(this.saveId, this.data);
+        }
+        return this;
+    }
+
+    _openDB() {
         return new Promise((resolve, reject) => {
         const request = indexedDB.open(this.dbName, 1);
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
             if (!db.objectStoreNames.contains(this.storeName)) {
-            db.createObjectStore(this.storeName);
+                db.createObjectStore(this.storeName);
             }
         };
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
         });
-  }
+    }
 
     _transaction(mode = 'readonly') {
         return this._db.transaction([this.storeName], mode).objectStore(this.storeName);
@@ -142,6 +142,7 @@ class Saver {
 
     // Set data at path, creating nested objects as needed
     setData(path, value) {
+
         if (!path || path === '/') {
         if (typeof value === 'object') this.data = value; else throw new Error('Root value must be an object');
         return this.data;
@@ -165,6 +166,10 @@ class Saver {
     // Convenience: get a shallow clone of the whole save data
     getAll() {
         return JSON.parse(JSON.stringify(this.data));
+    }
+
+    logData(){
+        console.log('Current save data:', JSON.stringify(this.data, null, 2));
     }
 }
 

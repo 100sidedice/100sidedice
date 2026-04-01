@@ -10,6 +10,11 @@ export const settings = {
     "FRAGMENT_SIZE_MAX": 1.5,
     "FRAGMENT_SPEED_MIN": 50,
     "FRAGMENT_SPEED_MAX": 150,
+    // Purchase completion visual settings
+    "PURCHASE_FADE_MS": 1,
+    "PURCHASE_PARTICLE_MS": 700,
+    "PURCHASE_PARTICLE_COUNT": 18,
+    "PURCHASE_PARTICLE_SPEED": 220,
 }
 
 export default function globalizeSettings(){

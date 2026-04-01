@@ -114,7 +114,7 @@ canvas {
   top: 1vw;
   right: 1vw;
   z-index: 10;
-  width: 10vw;
+  width: 13vw;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -168,6 +168,83 @@ canvas {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+/* Shop modal styles */
+#shop-modal.hidden { display: none; }
+#shop-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+}
+.shop-dialog {
+  width: min(640px, 90vw);
+  max-height: 80vh;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(85,0,85,0.95), rgba(40,0,40,0.9));
+  color: white;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  position: relative;
+}
+.shop-dialog h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+.shop-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.25rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.shop-close:hover { background: rgba(255,255,255,0.06); }
+.shop-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+.shop-entry {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(100,15,100,0.95), rgba(80,10,80,0.85));
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.shop-entry:active { transform: translateY(1px); }
+.shop-entry { position: relative; overflow: visible; }
+.shop-entry .meta { opacity: 0.9; font-size: 0.9rem; }
+.shop-empty { color: #ddd; padding: 1rem; }
+
+/* purchase visual overlay */
+.purchase-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgb(139, 139, 139);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+/* particle visuals */
+.purchase-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
 
 .item a {
   display: block;

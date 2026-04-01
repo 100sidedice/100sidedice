@@ -1,0 +1,67 @@
+{
+    "starfragments": {
+        "header": "Star fragment shop",
+        "items": {
+            "fragments_plus1": {
+                "name": "+1 fragment per star",
+                "max": 50,
+                "starting_cost": 10,
+                "cost_growth": 1.2,
+                "effect": { "stat": "fragmentsPerStar", "action": "add", "amount": 1 }
+            },
+            "fragments_x2": {
+                "name": "x2 fragments per star",
+                "max": 10,
+                "starting_cost": 1000,
+                "cost_growth": 3,
+                "effect": { "stat": "fragmentsPerStar", "action": "mul", "amount": 2 },
+                "condition": { "items/starfragments": 50 },
+                "fog_condition": { "items/starfragments": 1000 }
+            },
+            "unlock_harvester": {
+                "name": "Unlock star harvester",
+                "max": 1,
+                "starting_cost": 500,
+                "cost_growth": 1,
+                "unlocks_shop": "harvesters"
+            }
+        }
+    },
+    "harvesters": {
+        "header": "Harvester shop",
+        "currency": "starfragments",
+        "items": {
+            "amount": {
+                "name": "+1 harvester",
+                "max": 20,
+                "starting_cost": 200,
+                "cost_growth": 1.5,
+                "effect": { "stat": "amount", "action": "add", "amount": 1 }
+            },
+            "speed": {
+                "name": "+speed",
+                "max": 30,
+                "starting_cost": 150,
+                "cost_growth": 1.4,
+                "effect": { "stat": "speed", "action": "add", "amount": 12 }
+            },
+            "drift": {
+                "name": "Improve steering",
+                "max": 30,
+                "starting_cost": 120,
+                "cost_growth": 1.3,
+                "effect": { "stat": "drift", "action": "add", "amount": 0.12 }
+            }
+            ,
+            "star_count": {
+                "name": "Increase star count",
+                "max": 10,
+                "starting_cost": 1,
+                "cost_growth": 1.05,
+                "currency": "harvesters",
+                "harvester_threshold": 20,
+                "effect": { "stat": "starCount", "action": "add", "amount": 10 }
+            }
+        }
+    }
+}
