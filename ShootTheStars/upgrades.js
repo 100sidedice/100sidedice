@@ -7,7 +7,7 @@ class UpgradesManager {
 
     async _loadShops() {
         try {
-            const resp = await fetch('shops.json')
+            const resp = await fetch('ShootTheStars/data/shops.json')
             this.shops = await resp.json()
         } catch (err) {
             console.warn('UpgradesManager: failed to load shops.json', err)

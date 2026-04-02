@@ -96,14 +96,11 @@ class Harvester {
             ctx.stroke()
         }
         // draw blue harvester
-        ctx.fillStyle = '#35aaff'
+        ctx.fillStyle = '#35aaff33'
         ctx.beginPath()
         ctx.arc(this.pos.x, this.pos.y, this.radius, 0, Math.PI * 2)
         ctx.fill()
-        ctx.fillStyle = 'rgba(255,255,255,0.06)'
-        ctx.beginPath()
-        ctx.arc(this.pos.x, this.pos.y, this.radius - 2, 0, Math.PI * 2)
-        ctx.fill()
+
     }
 }
 
