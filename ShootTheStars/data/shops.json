@@ -12,11 +12,11 @@
             "fragments_x2": {
                 "name": "x2 fragments per star",
                 "max": 10,
-                "starting_cost": 1000,
+                "starting_cost": 500,
                 "cost_growth": 3,
                 "effect": { "stat": "fragmentsPerStar", "action": "mul", "amount": 2 },
                 "condition": { "items/starfragments": 250 },
-                "fog_condition": { "items/starfragments": 750 }
+                "fog_condition": { "items/starfragments": 400 }
             },
             "unlock_harvester": {
                 "name": "Unlock star harvester",
