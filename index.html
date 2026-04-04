@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>100sidedice homepage</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="profilepic.png">
 
@@ -13,17 +13,17 @@
     <script type="module" src="script.js"></script>
 
     <div class="header">
-        <a class="profile-link" href="">
+        <a class="profile-link tilt" href="">
             <img class="profile-img" src="profilepic.png" alt="Profile">
         </a>
         <h1>100sidedice</h1>
     </div>
     <div id="link_zone">
-        <div class="linkbox"><a href="https://github.com/100sidedice" target="_blank" rel="noopener">Github</a></div>
-        <div class="linkbox"><a href="/README.md">Readme</a></div>
-        <div class="linkbox"><a href="/docs/index.html">Docs</a></div>
-        <div class="linkbox"><a href="/about.html">About</a></div>
-        <div class="linkbox"><a href="/play.html">Play</a></div>
+        <div class="linkbox tilt"><a href="https://github.com/100sidedice" target="_blank" rel="noopener">Github</a></div>
+        <div class="linkbox tilt"><a href="/README.md">Readme</a></div>
+        <div class="linkbox tilt" id="docs-link">Docs</div>
+        <div class="linkbox tilt" id="about-link">About</div>
+        <div class="linkbox tilt" id="play-link">Play</div>
     </div>
     <div id="items"></div>
     <!-- Shop modal (hidden until an item is clicked) -->
@@ -33,6 +33,10 @@
             <h2 id="shop-title">Shop</h2>
             <div id="shop-content"></div>
         </div>
+    </div>
+
+    <div id="mainBoard">
+        
     </div>
 </body>
 </html>

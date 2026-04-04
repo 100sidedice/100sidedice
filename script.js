@@ -33,6 +33,66 @@ function resizeCanvas() {
 	ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 }
 
+/* MainBoard UI controller: manages the info panel content and simple animations */
+class MainBoard {
+    constructor() {
+        this.container = document.getElementById('mainBoard')
+        if (!this.container) return
+        this.panel = document.createElement('div')
+        this.panel.className = 'panel'
+
+        // close button
+        this.closeBtn = document.createElement('button')
+        this.closeBtn.className = 'mainboard-close'
+        this.closeBtn.setAttribute('aria-label', 'Close')
+        this.closeBtn.textContent = '×'
+        this.closeBtn.addEventListener('click', ()=> this.clear())
+        this.panel.appendChild(this.closeBtn)
+
+        // content container
+        this.content = document.createElement('div')
+        this.content.className = 'content'
+        this.panel.appendChild(this.content)
+
+        this.container.appendChild(this.panel)
+        this._visible = false
+        this._opacity = 0
+        this._fadeSpeed = 3.0 // opacity units per second
+        // don't absorb pointer events until visible
+        this.container.style.pointerEvents = 'none'
+        this.panel.style.pointerEvents = 'none'
+    }
+
+    setText(html) {
+        if (!this.panel) return
+          this.content.innerHTML = html
+        this.show()
+    }
+
+    clear() {
+        if (!this.panel) return
+          this.content.innerHTML = ''
+        this.hide()
+    }
+
+    show() { this._visible = true; this._opacity = 1 }
+    hide() { this._visible = false }
+
+    update(dt) {
+        if (!this.panel) return
+        // simple fade out when not visible
+        if (this._visible) {
+            this._opacity = Math.min(1, this._opacity + dt * this._fadeSpeed)
+        } else {
+            this._opacity = Math.max(0, this._opacity - dt * this._fadeSpeed)
+        }
+        this.panel.style.opacity = String(this._opacity)
+        this.panel.style.pointerEvents = this._opacity > 0.02 ? 'auto' : 'none'
+        // ensure container doesn't absorb input when hidden
+        if (this.container) this.container.style.pointerEvents = this._opacity > 0.02 ? 'auto' : 'none'
+    }
+}
+
 // Shop UI is handled in ShootTheStars/shop.js (initShop, startItemsSync, renderItemsList)
 
 /**
@@ -41,6 +101,10 @@ function resizeCanvas() {
 class Program {
     constructor() {
         this.game = new ShootTheStars(ctx)
+
+        // Create the mainBoard UI controller
+        this.mainBoard = new MainBoard()
+        window.mainBoard = this.mainBoard
 
         this.autosaveInterval = 10000 // 10 seconds
         this.lastAutosave = performance.now()
@@ -60,6 +124,8 @@ class Program {
 
         if (window.keys) window.keys.update(this.deltaTime)
         if (window.mouse) window.mouse.update(this.deltaTime)
+        // update main information panel
+        if (this.mainBoard) this.mainBoard.update(this.deltaTime)
 
         this.game.update(this.deltaTime)
 
@@ -79,6 +145,32 @@ class Program {
         // create program and start loop
         const program = new Program()
         program.loop()
+
+                // wire About button to open mainBoard with basic content
+                const aboutEl = document.getElementById('about-link')
+                if (aboutEl) {
+                    aboutEl.addEventListener('click', (ev)=>{
+                        ev.preventDefault && ev.preventDefault()
+                        if (program.mainBoard) {
+                            program.mainBoard.setText('<h2>About</h2><p>100sidedice — a tiny experimental project.</p><p>More info will go here.</p>')
+                        }
+                    })
+                }
+
+                // Add pressed state handling for left sidebar buttons so they clear on mouseup anywhere
+                const onPointerDown = (ev) => {
+                    const b = ev.target.closest && ev.target.closest('.linkbox')
+                    if (b) {
+                        b.classList.add('pressed')
+                    }
+                }
+                const clearPressed = ()=>{
+                    document.querySelectorAll && document.querySelectorAll('.linkbox.pressed').forEach(el=>el.classList.remove('pressed'))
+                }
+                document.addEventListener('mousedown', onPointerDown)
+                document.addEventListener('touchstart', onPointerDown)
+                document.addEventListener('mouseup', clearPressed)
+                document.addEventListener('touchend', clearPressed)
         return program
     }
 }

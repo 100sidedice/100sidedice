@@ -16,6 +16,41 @@ canvas {
 
 * { box-sizing: border-box; }
 
+:root {
+  /* color palette (rgb tuples for use inside rgba()) */
+  --accent-rgb: 85,0,85;
+  --accent-strong-rgb: 100,15,100;
+  --accent-light-rgb: 80,10,80;
+  --accent-dark-rgb: 40,0,40;
+
+  /* panels */
+  --bg-header: rgba(var(--accent-rgb), 0.53);
+  --bg-panel: rgba(var(--accent-rgb), 0.33);
+  --panel-strong: rgba(var(--accent-rgb), 0.53);
+
+  /* gradients */
+  --item-grad-start: rgba(var(--accent-rgb), 0.95);
+  --item-grad-end: rgba(var(--accent-rgb), 0.7);
+  --shop-dialog-end: rgba(var(--accent-dark-rgb), 0.9);
+  --shop-entry-start: rgba(var(--accent-strong-rgb), 0.95);
+  --shop-entry-end: rgba(var(--accent-light-rgb), 0.85);
+
+  /* interactive transform values */
+  --tilt-duration: 180ms;
+  --tilt-easing: cubic-bezier(.2,.9,.3,1);
+  --tilt-scale-hover: 1.05;
+  --tilt-rotate-hover: -3deg;
+  --tilt-scale-active: 0.99;
+  --tilt-rotate-active: -1deg;
+  
+  /* shadows */
+  --shadow-small: 0 2px 6px rgba(0,0,0,0.18);
+  --shadow-large: 0 10px 22px rgba(0,0,0,0.36);
+  --shadow-dialog: 0 20px 60px rgba(0,0,0,0.6);
+  /* text color */
+  --text-color: white;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -27,7 +62,7 @@ canvas {
   align-items: center;
   padding: 0 1rem;
   background: #55005588;
-  color: white;
+  color: var(--text-color);
 }
 
 .header h1 {
@@ -51,26 +86,40 @@ canvas {
   display: block;
 }
 
-/* Hover/interaction effects */
-.profile-link, .profile-img {
+/* Hover/interaction effects (centralized) */
+.tilt, .profile-img, .item {
   transform-origin: center;
-  will-change: transform;
 }
 
-.profile-link {
-  transition: transform 200ms cubic-bezier(.2,.9,.3,1);
+/* Reusable interactive transform/hover states shared by items and elements with the `.tilt` class */
+.tilt, .item {
+  will-change: transform, box-shadow;
+  transition: transform var(--tilt-duration) var(--tilt-easing), box-shadow var(--tilt-duration) ease, background-color var(--tilt-duration) ease;
 }
 
-.profile-link:hover .profile-img,
-.profile-link:focus .profile-img {
-  transform: scale(1.08) rotate(-6deg);
+/* Generic tilt interaction (applies to .tilt elements and .item)
+   Use :focus-within for containers that hold interactive children (e.g., linkbox)
+*/
+.tilt:hover,
+.tilt:focus,
+.tilt:focus-within,
+.item:hover,
+.item:focus {
+  transform: scale(var(--tilt-scale-hover)) rotate(var(--tilt-rotate-hover));
+  box-shadow: var(--shadow-large);
+}
+
+.tilt:active,
+.item:active {
+  transform: scale(var(--tilt-scale-active)) rotate(var(--tilt-rotate-active));
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .profile-link,
-  .profile-img {
+  .tilt,
+  .item {
     transition: none !important;
     transform: none !important;
+    will-change: auto !important;
   }
 }
 
@@ -87,25 +136,32 @@ canvas {
   justify-content: stretch;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: #55005555;
+  background: var(--bg-panel);
 }
 .linkbox {
   width: 100%;
   flex: 1 1 0;
   min-height: 0;
   padding: 0.5rem;
-  background: #55005588;
-  color: white;
+  background: var(--panel-strong);
+  color: var(--text-color);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
 }
 .linkbox a {
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--text-color);
   text-decoration: none;
   font-weight: bold;
 }
+/* interaction for .linkbox is handled by .tilt class applied in HTML */
+
 .linkbox a:hover {
   text-decoration: underline;
 }
@@ -121,7 +177,7 @@ canvas {
   justify-content: stretch;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: #55005555;
+  background: var(--bg-panel);
 
 }
 #items:empty {
@@ -140,26 +196,18 @@ canvas {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5rem 0.75rem;
-  background: linear-gradient(135deg, rgba(85,0,85,0.95), rgba(85,0,85,0.7));
-  color: white;
+  background: linear-gradient(135deg, var(--item-grad-start), var(--item-grad-end));
+  color: var(--text-color);
   display: block;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-  transform-origin: center;
-  will-change: transform, box-shadow;
-  transition: transform 180ms cubic-bezier(.2,.9,.3,1), box-shadow 180ms ease, background-color 180ms ease;
+  box-shadow: var(--shadow-small);
+  /* animation handled by the centralized .tilt/.item rules above */
 }
-.item:hover,
-.item:focus {
-  transform: scale(1.05) rotate(-3deg);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.36);
-}
-.item:active {
-  transform: scale(0.99) rotate(-1deg);
-}
+
+/* .item and any element with .tilt use the centralized rules above */
 
 .item > * {
   display: block;
@@ -186,8 +234,8 @@ canvas {
   overflow: auto;
   padding: 1rem;
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(85,0,85,0.95), rgba(40,0,40,0.9));
-  color: white;
+  background: linear-gradient(180deg, var(--item-grad-start), var(--shop-dialog-end));
+  color: var(--text-color);
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
   position: relative;
 }
@@ -200,7 +248,7 @@ canvas {
   right: 8px;
   top: 8px;
   background: transparent;
-  color: white;
+  color: var(--text-color);
   border: none;
   font-size: 1.25rem;
   padding: 6px 10px;
@@ -212,8 +260,8 @@ canvas {
 .shop-entry {
   padding: 0.6rem 0.8rem;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(100,15,100,0.95), rgba(80,10,80,0.85));
-  color: white;
+  background: linear-gradient(135deg, var(--shop-entry-start), var(--shop-entry-end));
+  color: var(--text-color);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -245,14 +293,77 @@ canvas {
   will-change: transform, opacity;
 }
 
-
 .item a {
   display: block;
   width: 100%;
 }
 
+/* Main information panel shown when the user clicks About (or similar) */
+#mainBoard {
+  position: fixed;
+  top: 10vh; /* 10vh from top */
+  left: 15vw; /* after left sidebar */
+  right: 13vw; /* before items panel on the right */
+  bottom: 10vh; /* 10vh from bottom */
+  padding: 1rem;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+#mainBoard .panel {
+  position: relative;
+  width: min(900px, 90%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--item-grad-start), var(--shop-dialog-end));
+  color: var(--text-color);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-dialog);
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+#mainBoard .panel .content {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding-top: 0.25rem;
+}
+
+/* close button for mainBoard */
+.mainboard-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: transparent;
+  color: var(--text-color);
+  border: none;
+  font-size: 1.25rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.mainboard-close:hover { background: rgba(255,255,255,0.06); }
+
+/* pressed state applied via JS to ensure it clears on mouseup outside */
+.tilt.pressed {
+  transform: scale(var(--tilt-scale-active)) rotate(var(--tilt-rotate-active));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .item {
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .linkbox,
+  .profile-link,
+  .profile-img {
     transition: none !important;
     transform: none !important;
     will-change: auto !important;

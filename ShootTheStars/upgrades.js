@@ -74,7 +74,6 @@ class UpgradesManager {
 
         let value = (baseValue + addSum) * mulProduct
         if (setValue !== undefined) value = setValue
-        try { console.debug(`UpgradesManager.getStat(${itemName}, ${statName}) => ${value} (base ${baseValue}, add ${addSum}, mul ${mulProduct})`) } catch (e) {}
         return value
     }
 }
