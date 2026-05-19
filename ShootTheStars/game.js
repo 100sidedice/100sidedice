@@ -1,6 +1,11 @@
-import { resizeCanvas } from "../main.js";
+import { resizeCanvas } from "../Support/canvasStuff.js";
+import { settings } from "./settings.js";
+import { loadSave } from "../Support/save.js"
+import UpgradeManager from "./upgradeManager.js"
+import StarManager from "./starManager.js"
 
 resizeCanvas('stsCanvas')
+window.addEventListener('resize', () => resizeCanvas('stsCanvas'))
 class ShootTheStars {
     constructor(canvasId) {
         const canvas = document.getElementById(canvasId)
@@ -8,6 +13,10 @@ class ShootTheStars {
         this.refreshRate = 1000 / 60 // 60 fps
         this.accumulatedTime = 0
         this.lastTime = performance.now()
+        
+        this.save = loadSave('save', settings.defaultSave)
+        this.upgradeManager = new UpgradeManager(this.save)
+        this.StarManager = new StarManager(this.upgradeManager)
     }
     loop() {
         // throttle so fps is consistent
@@ -18,15 +27,18 @@ class ShootTheStars {
         while (this.accumulatedTime >= this.refreshRate) {
             this.accumulatedTime -= this.refreshRate
             this.update()
+            this.draw()
         }
-        // close the loop
         window.requestAnimationFrame(this.loop.bind(this))
     }
     update(){
-
+        this.upgradeManager.update()
+        this.StarManager.update()
+       
     }
     draw(){
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
-
+        this.StarManager.draw(this.ctx)
     }
 }
+document.addEventListener('DOMContentLoaded', () => { const game = new ShootTheStars('stsCanvas'); game.loop(); })

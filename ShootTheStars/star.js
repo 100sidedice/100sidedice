@@ -2,7 +2,7 @@ import { checkBounds } from '../Support/bounds.js'
 import { randomElmFromArray } from '../Support/random.js'
 
 export class Star {
-    constructor(upgradeManager) {
+    constructor(upgradeManager, onDeath) {
         this.data = upgradeManager.getData('stars')
         this.x = Math.random() * window.innerWidth
         this.y = Math.random() * window.innerHeight
@@ -12,6 +12,7 @@ export class Star {
         this.rot = Math.random() * Math.PI * 2
         const speedDiff = this.data.maxSpeed - this.data.minSpeed
         this.speed = this.data.minSpeed + Math.random() * speedDiff
+        this.onDeath = onDeath
     }
     update() {
         const cos = Math.cos(this.rot)
