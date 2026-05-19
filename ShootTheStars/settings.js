@@ -6,8 +6,8 @@ export const settings = {
                 "minSize": 1,
                 "maxSize": 3,
                 "color": ['white'],
-                "minSpeed": 0.5,
-                "maxSpeed": 1.5
+                "minSpeed": 0.05,
+                "maxSpeed": 0.08
             },
             "upgrades": {
                 "maxStars": 100

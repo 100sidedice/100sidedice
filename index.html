@@ -3,21 +3,30 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>100sidedice</title>
+    <link rel="icon" href="Assets/profilepic.png">
     <link rel="stylesheet" href="Home/style.css">
     <link rel="stylesheet" href="ShootTheStars/stars.css">
 </head>
 <body>
     <!-- Debug stuff-->
-    <div id="debug" style="color:rgb(83, 83, 83)">Hello, world!</div>
+    <div id="debug" style="color:rgb(83, 83, 83); position:fixed; z-index:1000;">Hello, world!</div>
 
     <!-- Background (Shoot the stars [sts]) -->
     <canvas id="stsCanvas" width="500" height="500"></canvas>
     <script src="ShootTheStars/game.js" type="module"></script>
 
     <!-- Everything else -->
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+        <img src="Assets/profilepic.png" alt="Profile Picture" id="profile-pic">
+        <h1>100sidedice</h1>
+    </header>
+    <aside>
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+        <div>Item 4</div>
+        <div>Item 5</div>
+    </aside>
     <script src="main.js" type="module"></script>
 </body>
 </html>

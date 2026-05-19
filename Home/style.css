@@ -1,3 +1,55 @@
 html, body {
-    background: #000000FF
+    background: #0c011b;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 16em 1fr;
+    min-height: 100vh;
+}
+header {
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1em;
+    height: 5em;
+    grid-column: 1 / -1;
+    position: relative;
+    z-index: 1;
+}
+header h1 {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    text-align: left;
+    font-size: 1.1em;
+}
+header img {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+}
+aside {
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    width: 16em;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1em;
+    grid-row: 2;
+    grid-column: 1;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    z-index: 1;
 }

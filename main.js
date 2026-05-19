@@ -1,1 +1,1 @@
-document.getElementById('debug').innerText = "Debug: Game initialized"
+//document.getElementById('debug').innerText = "Debug: Game initialized"
