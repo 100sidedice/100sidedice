@@ -11,7 +11,7 @@ html, body {
 
 body {
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-columns: 16em 1fr;
     min-height: 100vh;
 }
@@ -22,10 +22,11 @@ header {
     align-items: center;
     gap: 1rem;
     padding: 1em;
-    height: 6em;
+    height: 7em;
     grid-column: 1 / -1;
     position: relative;
     z-index: 1;
+    border-bottom: 0.5rem solid #7f0c8e55;
 }
 header h1 {
     margin: 0;
@@ -67,8 +68,83 @@ aside a {
     color: #FFFFFFFF;
 }
 aside a:hover {
-    transform:rotate(-5deg)
+    transform: rotate(-3deg);
+    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    cursor: pointer;
 }
 aside a:active {
-    transform:rotate(1deg)
+    transform: rotate(1deg) scale(0.9);
+    background: linear-gradient(to bottom, #35043b88, #23022788);
+    outline: 1px solid #bd7dc588;
+    color: #b993ab;
+    user-select: none;
+    cursor:grabbing;
+}
+#board {
+    grid-row: 2;
+    grid-column: 2;
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    color: #fff;
+    z-index: 1;
+    border-left: 0.5rem solid #7f0c8e55;
+}
+footer {
+    grid-row: 3;
+    grid-column: 1 / -1;  /* spans both columns */
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    width: 100%;
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    padding: 1em;
+    height: 8em;
+    position: relative;
+    z-index: 1;
+    border-top: 0.5rem solid #7f0c8e55;
+}
+footer a { 
+    flex: 1; 
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    border-radius: 1em;
+    text-align:center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(0deg);
+    transition: transform 200ms ease;
+    color: #FFFFFFFF;
+    min-height: 90%;
+}
+footer a:hover {
+    transform: rotate(-3deg);
+    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    cursor: pointer;
+}
+footer a:active {
+    transform: rotate(1deg) scale(0.9);
+    background: linear-gradient(to bottom, #35043b88, #23022788);
+    outline: 1px solid #bd7dc588;
+    color: #b993ab;
+    user-select: none;
+    cursor:grabbing;
+}
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;  /* single column instead of sidebar + content */
+        grid-template-rows: auto 1fr auto;  /* keep 3 rows */
+    }
+    
+    aside {
+        display: none;  /* hide the sidebar */
+    }
+    
+    #board {
+        grid-column: 1;  /* ensure it fills the single column */
+        margin-left: 0rem;
+        border-left: 0rem solid #7f0c8e55;
+    }
+    footer {
+        display: flex;  /* show the footer on mobile */
+    }
 }
