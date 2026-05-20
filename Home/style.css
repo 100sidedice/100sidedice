@@ -87,6 +87,10 @@ aside a:active {
     color: #fff;
     z-index: 1;
     border-left: 0.5rem solid #7f0c8e55;
+    min-height: 0; /* allow the grid item to shrink and enable internal scrolling */
+    overflow: auto; /* make the board its own scroll container */
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
 }
 footer {
     grid-row: 3;
@@ -147,4 +151,47 @@ footer a:active {
     footer {
         display: flex;  /* show the footer on mobile */
     }
+}
+article {
+    flex: 1; 
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    border-radius: 1em;
+    text-align:center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(0deg);
+    transition: transform 200ms ease;
+    color: #FFFFFFFF;
+}   
+article img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1em;
+}
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.post hr {
+    width: 60%;
+    border: none;
+    border-top: 2px solid rgba(255,255,255,0.12);
+    margin: 0 auto
+}
+
+.post time {
+  display: block;
+  font-size: 0.85rem;
+  color: #d8cbe3;
+  opacity: 0.9;
+  margin: 0.5rem;
+  text-align: center;
+}
+article h2 {
+    margin:1rem
 }
