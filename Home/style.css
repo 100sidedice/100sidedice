@@ -22,7 +22,7 @@ header {
     align-items: center;
     gap: 1rem;
     padding: 1em;
-    height: 5em;
+    height: 6em;
     grid-column: 1 / -1;
     position: relative;
     z-index: 1;
@@ -52,4 +52,23 @@ aside {
     overflow: auto;
     position: relative;
     z-index: 1;
+}
+aside a { 
+    flex: 1; 
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    border-radius: 1em;
+    text-align:center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(0deg);
+    transition: transform 200ms ease;
+    color: #FFFFFFFF;
+}
+aside a:hover {
+    transform:rotate(-5deg)
+}
+aside a:active {
+    transform:rotate(1deg)
 }
