@@ -188,6 +188,9 @@ article img:active{
 article h2 {
     margin:1rem
 }
+article p {
+    margin: 1rem;
+}
 .post {
   display: flex;
   flex-direction: column;
@@ -218,4 +221,7 @@ article h2 {
 .alert {
     outline: 3px solid #FF000033;
     background: linear-gradient(to bottom, #8e0c0c55, #53050555) !important;
+}
+#sts {
+    color:rgb(251, 0, 255)
 }
