@@ -13,3 +13,41 @@
     user-select: none; /* prevent text selection on drag */
     display: block;
 }
+
+#items-container {
+    background:linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    position: fixed;
+    z-index: 1;
+    width:100vw;
+    top:7rem;
+    display:flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+#items-container p{
+    min-width:10rem;
+    flex: 0 0 auto;
+    display: inline-block; 
+    text-align:center;
+    margin:0.3rem;
+    background:linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    color:#FFF;
+    padding:1rem;
+    box-sizing: border-box;
+}
+
+/* Fade-in/out state for when the board is hidden */
+#items-container {
+    transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.itemsHidden {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    pointer-events: none; /* don't allow interactions while hidden */
+}

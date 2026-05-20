@@ -48,9 +48,15 @@ function scrollToSection(sectionIndex){
 }
 function closeBoard(){
     document.getElementById('board').classList.add('boardHidden');
+    const items = document.getElementById('items-container');
+    // Show items bar when the board is closed
+    if (items) items.classList.remove('itemsHidden');
 }
 function openBoard(){
     document.getElementById('board').classList.remove('boardHidden');
+    const items = document.getElementById('items-container');
+    // Hide items bar when the board is open
+    if (items) items.classList.add('itemsHidden');
 }
 function isBoardVisible(){
     return !document.getElementById('board').classList.contains('boardHidden');
@@ -72,3 +78,15 @@ function flickerPlay(el, interval = 150) {
     el.classList.add('alert');
     setTimeout(() => el.classList.remove('alert'), interval);
 }
+
+// Ensure the items container matches the initial board visibility on load
+document.addEventListener('DOMContentLoaded', () => {
+    const items = document.getElementById('items-container');
+    if (!items) return;
+    // Items should be visible when the board is NOT visible
+    if (isBoardVisible()) {
+        items.classList.add('itemsHidden');
+    } else {
+        items.classList.remove('itemsHidden');
+    }
+});
