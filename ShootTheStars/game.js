@@ -1,11 +1,15 @@
 import { resizeCanvas } from "../Support/canvasStuff.js";
 import { settings } from "./settings.js";
-import { loadSave } from "../Support/save.js"
+import { loadSave, save } from "../Support/save.js"
 import UpgradeManager from "./upgradeManager.js"
 import StarManager from "./starManager.js"
 
 resizeCanvas('stsCanvas')
 window.addEventListener('resize', () => resizeCanvas('stsCanvas'))
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => resizeCanvas('stsCanvas'))
+    window.visualViewport.addEventListener('scroll', () => resizeCanvas('stsCanvas'))
+}
 class ShootTheStars {
     constructor(canvasId) {
         const canvas = document.getElementById(canvasId)
@@ -17,6 +21,9 @@ class ShootTheStars {
         this.save = loadSave('save', settings.defaultSave)
         this.upgradeManager = new UpgradeManager(this.save)
         this.StarManager = new StarManager(this.upgradeManager)
+        this.autosaveInterval = setInterval(() => {
+            save('save', this.save)
+        }, 10000)
     }
     loop() {
         // throttle so fps is consistent

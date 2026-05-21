@@ -6,7 +6,8 @@
     color: #fff;
     z-index: 1;
     min-height: 0; /* allow the grid item to shrink and enable internal scrolling */
-    overflow: auto; /* make the board its own scroll container */
+    overflow-y: auto; /* make the board its own scroll container */
+    overflow-x: hidden; /* make the board its own scroll container */
     -webkit-overflow-scrolling: touch;
     padding: 1rem;
     transition: transform 0.3s ease;
@@ -75,12 +76,13 @@ article p {
 }
 
 #sts {
-    color:rgb(251, 0, 255)
+    color:#fb00ff
 }
 
 #contact-info {
     text-align: left;
     color: #a280b1;
+    font-size: 0.8rem;
 }
 #contact-info a{
     text-decoration: none;

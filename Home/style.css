@@ -12,7 +12,6 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 16em 1fr;
-    min-height: 100vh;
 }
 header {
     background: linear-gradient(to bottom, #7f0c8e55, #4a055355);

@@ -1,5 +1,6 @@
 export function resizeCanvas(canvasID = 'Draw') {
     const canvas = document.getElementById(canvasID);
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const viewport = window.visualViewport;
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
 }

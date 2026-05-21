@@ -49,12 +49,34 @@ function scrollToSection(sectionIndex){
 function closeBoard(){
     document.getElementById('board').classList.add('boardHidden');
     const items = document.getElementById('items-container');
+    const itemShop = document.getElementById('item-shop');
+    // Close shop when board closes
+    if (itemShop) itemShop.classList.add('itemShopHidden');
+    // Clear shop focus state
+    if (window.upgradeManager) {
+        window.upgradeManager.shopInFocus = null;
+    }
     // Show items bar when the board is closed
     if (items) items.classList.remove('itemsHidden');
 }
 function openBoard(){
     document.getElementById('board').classList.remove('boardHidden');
     const items = document.getElementById('items-container');
+    const itemShop = document.getElementById('item-shop');
+    if (itemShop) itemShop.classList.add('itemShopHidden');
+    // Clear shop focus state when board becomes visible
+    if (window.upgradeManager) {
+        window.upgradeManager.shopInFocus = null;
+    }
+    // Auto-close shop after 500ms to prevent async timing issues
+    setTimeout(() => {
+        if (itemShop && !itemShop.classList.contains('itemShopHidden')) {
+            itemShop.classList.add('itemShopHidden');
+        }
+        if (window.upgradeManager) {
+            window.upgradeManager.shopInFocus = null;
+        }
+    }, 500);
     // Hide items bar when the board is open
     if (items) items.classList.add('itemsHidden');
 }
@@ -79,7 +101,7 @@ function flickerPlay(el, interval = 150) {
     setTimeout(() => el.classList.remove('alert'), interval);
 }
 
-// Ensure the items container matches the initial board visibility on load
+// Ensure the items container and item shop match the initial board visibility on load
 document.addEventListener('DOMContentLoaded', () => {
     const items = document.getElementById('items-container');
     if (!items) return;

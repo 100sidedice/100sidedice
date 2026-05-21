@@ -87,7 +87,7 @@ footer a:active {
 }
 @media (max-width: 768px) {
     body {
-        grid-template-columns: 1fr;  /* single column instead of sidebar + content */
+        grid-template-columns: 1fr 0px;  
         grid-template-rows: auto 1fr auto;  /* keep 3 rows */
     }
     
@@ -96,9 +96,15 @@ footer a:active {
     }
     
     #board {
-        grid-column: 1;  /* ensure it fills the single column */
+        grid-column: 1/-1;  /* ensure it fills the single column */
         margin-left: 0rem;
         border-left: 0rem solid #7f0c8e55;
+    }
+    #items-container { 
+        grid-column: 1/-1 !important;
+    }
+    #item-shop {
+        grid-column: 1/-1 !important;
     }
     footer {
         display: flex;  /* show the footer on mobile */

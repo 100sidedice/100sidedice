@@ -2,9 +2,8 @@
 
 #stsCanvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    inset: 0;
+    width: 100dvw;
     height: 100dvh;
     z-index: 0;
     /* keep pointer events so canvas still receives input where it is visible */
@@ -16,10 +15,13 @@
 
 #items-container {
     background:linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    position: fixed;
-    z-index: 1;
-    width:100vw;
-    top:7rem;
+    grid-row: 2;
+    grid-column: 2;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    align-self: start;
+    justify-self: stretch;
     display:flex;
     flex-direction: row;
     overflow-x: auto;
@@ -39,8 +41,23 @@
     color:#FFF;
     padding:1rem;
     box-sizing: border-box;
+    border-radius: 0.5rem;
+    transition: transform 200ms ease;
 }
 
+#items-container p:hover {
+    transform: rotate(-3deg);
+    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    cursor: pointer;
+}
+#items-container p:active {
+    transform: rotate(1deg) scale(0.9);
+    background: linear-gradient(to bottom, #35043b88, #23022788);
+    outline: 1px solid #bd7dc588;
+    color: #b993ab;
+    user-select: none;
+    cursor:grabbing;
+}
 /* Fade-in/out state for when the board is hidden */
 #items-container {
     transition: opacity 240ms ease, transform 240ms ease;
@@ -50,4 +67,108 @@
     opacity: 0;
     transform: translateY(-0.5rem);
     pointer-events: none; /* don't allow interactions while hidden */
+}
+
+#item-shop {
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    grid-row: 2;
+    grid-column: 2;
+    color: #fff;
+    z-index: 1;
+    min-height: 0; /* allow the grid item to shrink and enable internal scrolling */
+    overflow-y: auto; /* make the item shop its own scroll container */
+    overflow-x: hidden; /* make the item shop its own scroll container */
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
+    margin-top: 5rem;
+    transition: transform 0.3s ease;
+}
+
+#item-shop h2 {
+    margin-top: 0;
+}
+
+.shop-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
+    table-layout: fixed;
+}
+
+.shop-table thead th {
+    padding: 0 1rem 0.5rem;
+    color: #efe6f5;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.shop-table thead th:first-child {
+    text-align: left;
+}
+
+.shop-table thead th:nth-child(2) {
+    text-align: center;
+}
+
+.shop-table thead th:last-child {
+    text-align: right;
+}
+
+.shop-table tbody tr td {
+    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    padding: 0.9rem 1rem;
+    color: #fff;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+.shop-table tbody tr td:first-child {
+    border-radius: 1rem 0 0 1rem;
+    width: 48%;
+}
+
+.shop-table tbody tr td:nth-child(2) {
+    width: 14%;
+    text-align: center;
+}
+
+.shop-table tbody tr td:last-child {
+    border-radius: 0 1rem 1rem 0;
+    width: 38%;
+    text-align: right;
+}
+
+.shop-table tbody tr + tr td {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.shop-table tbody tr:hover td {
+    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+}
+
+.shop-table tbody tr:active td {
+    background: linear-gradient(to bottom, #35043b88, #23022788);
+    color: #b993ab;
+}
+
+.shop-row {
+    cursor: pointer;
+}
+
+.shop-row:hover td {
+    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+}
+
+.shop-row-max,
+.shop-row-unaffordable {
+    cursor: not-allowed;
+}
+
+.shop-row-max td,
+.shop-row-unaffordable td {
+    opacity: 0.55;
+}
+
+.itemShopHidden {
+    transform: translateX(100%);
 }
