@@ -41,7 +41,6 @@ class ShootTheStars {
     update(){
         this.upgradeManager.update()
         this.StarManager.update()
-       
     }
     draw(){
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)

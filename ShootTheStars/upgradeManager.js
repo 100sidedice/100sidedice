@@ -11,6 +11,13 @@ export default class UpgradeManager {
         this.items = {}
         this.generateItemList()
         this.shopInFocus = null;
+
+        // we'll make f8 give infinite star fragments for testing purposes
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'F8') {
+                this.addItemValue('starFragments', 10000000000000);
+            }  
+        })
     }
     generateItemList(){
         this.items = {}
@@ -27,7 +34,15 @@ export default class UpgradeManager {
         }
     }
     update(){
-
+        const unlockLevel = this.getData('itemData', 'starFragments', "shopData")[2].level;
+        const dragonItem = this.getData('itemData', 'dragons', 'value');
+        if(unlockLevel >= 1 && dragonItem === 0){
+            dragonItem.value = 1;
+            dragonItem.update();
+            this.getData('unlockedItems').push('dragons');
+            this.generateItemList();
+            document.getElementById('myName').textContent = unlockLevel
+        }
     }
     /**
      * Calculate a generic upgrade-driven value using formula: ((add) * mult) ** exp

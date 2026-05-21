@@ -19,6 +19,7 @@ export default class StarManager {
                 }
             })
         })
+        this.dragons = [];
     }
     removeStar(star) {
         const starIndex = this.stars.indexOf(star)
@@ -109,6 +110,14 @@ export default class StarManager {
         // update fragments
         for (const f of this.fragments) f.update();
         this.fragments = this.fragments.filter(f => f.framesLeft > 0);
+
+
+        // update dragons
+        if(this.dragons.length < this.upgradeManager.getData("itemData", "dragons", "value")){
+            const dragonImage = new Image();
+            dragonImage.src = 'assets/dragon.png';
+            this.dragons.push(new Dragon(dragonImage, this.upgradeManager, this));
+        }
     }
     draw(ctx){
         this.stars.forEach(star => star.draw(ctx))

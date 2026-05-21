@@ -43,6 +43,9 @@ export class Item {
 
         const tbody = document.createElement('tbody');
         for (const upgrade of this.data.shopData) {
+            if (!this.upgradeManager.canAfford(upgrade.fog?.currency, upgrade.fog?.amount)) {
+                continue;
+            }
             const row = document.createElement('tr');
             const upgradeId = upgrade.id ?? upgrade.name ?? '';
             const cost = this.upgradeManager.getUpgradeCost(upgrade);
@@ -64,6 +67,7 @@ export class Item {
             if (!atMax) {
                 row.addEventListener('click', () => {
                     this.upgradeManager.purchaseUpgrade(this.data.key, upgradeId);
+                    this.openShop(); // Refresh shop after purchase
                 });
             }
             tbody.appendChild(row);
