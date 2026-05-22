@@ -35,13 +35,19 @@ export default class UpgradeManager {
     }
     update(){
         const unlockLevel = this.getData('itemData', 'starFragments', "shopData")[2].level;
-        const dragonItem = this.getData('itemData', 'dragons', 'value');
-        if(unlockLevel >= 1 && dragonItem === 0){
-            dragonItem.value = 1;
-            dragonItem.update();
+        const dragonItem = this.getData('itemData', 'dragons');
+        const dragonCount = unlockLevel >= 1 ? 1 + Number(dragonItem.shopData[0].level || 0) : 0;
+
+        if (unlockLevel >= 1 && !this.getData('unlockedItems').includes('dragons')) {
             this.getData('unlockedItems').push('dragons');
             this.generateItemList();
-            document.getElementById('myName').textContent = unlockLevel
+        }
+
+        if (dragonItem.value !== dragonCount) {
+            dragonItem.value = dragonCount;
+            if (this.items.dragons) {
+                this.items.dragons.update();
+            }
         }
     }
     /**

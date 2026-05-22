@@ -65,16 +65,40 @@ export const settings = {
                     "description": "Dragons that collect stars for you, that for some reason hate falling blocks",
                     "shopData":[
                         {
+                            "id":"dragon+",
+                            "level":0,
+                            "name": "More dragons",
+                            "baseCost": {"currency": "starFragments", "amount": 1200000},
+                            "upgradeType": "additive",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 1.5,
+                            "maxLevel": 10,
+                            "fog": {"currency": "starFragments", "amount": 1000000},
+                            "visible": {"currency": "starFragments", "amount": 1100000}
+                        },
+                        {
                             "id":"dragonAccuracy",
                             "level":0,
                             "name": "Dragon Accuracy",
-                            "baseCost": {"currency": "starFragments", "amount": 1200000},
+                            "baseCost": {"currency": "starFragments", "amount": 2200000},
                             "upgradeType": "additive",
                             "scaleType": "multiplicative",
                             "scaleAmount": 1.2,
                             "maxLevel": 20,
-                            "fog": {"currency": "starFragments", "amount": 1000000},
-                            "visible": {"currency": "starFragments", "amount": 1100000}
+                            "fog": {"currency": "starFragments", "amount": 2000000},
+                            "visible": {"currency": "starFragments", "amount": 2100000}
+                        },
+                        {
+                            "id":"dragonCollectionRadius",
+                            "level":0,
+                            "name": "Dragon Collection Range",
+                            "baseCost": {"currency": "starFragments", "amount": 1500000},
+                            "upgradeType": "additive",
+                            "scaleType": "additive",
+                            "scaleAmount": 2,
+                            "maxLevel": 20,
+                            "fog": {"currency": "starFragments", "amount": 1300000},
+                            "visible": {"currency": "starFragments", "amount": 1400000}
                         },
                     ]
                 }

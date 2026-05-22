@@ -2,6 +2,7 @@ import { Star } from "./star.js";
 import { checkBounds } from "../Support/bounds.js";
 import InputManager from "./inputManager.js";
 import { Fragment } from "./fragment.js";
+import Dragon from "./dragon.js";
 
 export default class StarManager {
     constructor(upgradeManager) {
@@ -118,11 +119,13 @@ export default class StarManager {
             dragonImage.src = 'assets/dragon.png';
             this.dragons.push(new Dragon(dragonImage, this.upgradeManager, this));
         }
+        this.dragons.forEach(dragon => dragon.update());
     }
     draw(ctx){
         this.stars.forEach(star => star.draw(ctx))
         // draw fragments on top
         this.fragments.forEach(f => f.draw(ctx));
+        this.dragons.forEach(dragon => dragon.draw(ctx));
     }
     spawnStar(){
         if (this.stars.length < this.maxStars) {

@@ -15,6 +15,96 @@
 <body>
     <!-- Background (Shoot the stars [sts]) -->
     <canvas id="stsCanvas" width="500" height="500"></canvas>
+
+    <script>
+        (() => {
+            let myName = null;
+            let pendingError = null;
+
+            const showError = (message) => {
+                const text = `ERR: ${String(message).slice(0, 60)}`;
+                if (myName) {
+                    myName.textContent = text;
+                } else {
+                    pendingError = text;
+                }
+            };
+
+            const sendToServer = (level, message, stack = '') => {
+                const payload = JSON.stringify({
+                    source: 'browser',
+                    level,
+                    message: String(message),
+                    stack: stack ? String(stack) : '',
+                    url: location.href,
+                });
+
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon('/__log', new Blob([payload], { type: 'application/json' }));
+                    return;
+                }
+
+                fetch('/__log', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: payload,
+                    keepalive: true,
+                }).catch(() => {});
+            };
+
+            const formatConsoleArg = (value) => {
+                if (value instanceof Error) {
+                    return value.stack || value.message || String(value);
+                }
+
+                if (typeof value === 'object' && value !== null) {
+                    try {
+                        return JSON.stringify(value);
+                    } catch {
+                        return String(value);
+                    }
+                }
+
+                return String(value);
+            };
+
+            for (const level of ['log', 'info', 'warn', 'error', 'debug']) {
+                const original = console[level];
+                if (typeof original !== 'function') continue;
+
+                console[level] = (...args) => {
+                    sendToServer(level, args.map(formatConsoleArg).join(' '));
+                    return original.apply(console, args);
+                };
+            }
+
+            window.addEventListener('error', (event) => {
+                const message = event?.message || 'unknown error';
+                showError(message);
+                sendToServer('error', message, event?.error?.stack || '');
+            });
+
+            window.addEventListener('unhandledrejection', (event) => {
+                const message = event?.reason?.message || event?.reason || 'promise rejection';
+                const stack = event?.reason?.stack || '';
+                showError(message);
+                sendToServer('unhandledrejection', message, stack);
+            });
+
+            const initErrorLogger = () => {
+                myName = document.getElementById('myName');
+                if (myName && pendingError) {
+                    myName.textContent = pendingError;
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initErrorLogger, { once: true });
+            } else {
+                initErrorLogger();
+            }
+        })();
+    </script>
     
     <script src="ShootTheStars/game.js" type="module"></script>
 
