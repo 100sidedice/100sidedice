@@ -4,6 +4,36 @@ import { loadSave, save } from "../Support/save.js"
 import UpgradeManager from "./upgradeManager.js"
 import StarManager from "./starManager.js"
 
+function syncSaveSchema(target, source) {
+    if (Array.isArray(source)) {
+        if (!Array.isArray(target)) {
+            return structuredClone(source)
+        }
+
+        // For arrays of upgrades, merge by id so new upgrades are injected while preserving levels.
+        const sourceHasIds = source.every(entry => entry && typeof entry === 'object' && 'id' in entry)
+        if (sourceHasIds) {
+            const merged = source.map(defaultEntry => {
+                const savedEntry = target.find(saved => saved && saved.id === defaultEntry.id)
+                return syncSaveSchema(savedEntry, defaultEntry)
+            })
+            return merged
+        }
+
+        return structuredClone(source)
+    }
+
+    if (source && typeof source === 'object') {
+        const out = (target && typeof target === 'object') ? target : {}
+        for (const key of Object.keys(source)) {
+            out[key] = syncSaveSchema(out[key], source[key])
+        }
+        return out
+    }
+
+    return target === undefined ? source : target
+}
+
 resizeCanvas('stsCanvas')
 window.addEventListener('resize', () => resizeCanvas('stsCanvas'))
 if (window.visualViewport) {
@@ -19,6 +49,7 @@ class ShootTheStars {
         this.lastTime = performance.now()
         
         this.save = loadSave('save', settings.defaultSave)
+        this.save = syncSaveSchema(this.save, settings.defaultSave)
         this.upgradeManager = new UpgradeManager(this.save)
         this.StarManager = new StarManager(this.upgradeManager)
         this.autosaveInterval = setInterval(() => {

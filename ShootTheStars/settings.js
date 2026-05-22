@@ -56,7 +56,18 @@ export const settings = {
                             "fog": {"currency": "starFragments", "amount": 500000},
                             "visible": {"currency": "starFragments", "amount": 1000000}
                         },
-                        
+                        {
+                            "id":"unlockPaint",
+                            "level":0,
+                            "name": "Unlock paint",
+                            "baseCost": {"currency": "starFragments", "amount": 10000000},
+                            "upgradeType": "additive",
+                            "scaleType": "additive",
+                            "scaleAmount": 1,
+                            "maxLevel": 1,
+                            "fog": {"currency": "starFragments", "amount": 9000000},
+                            "visible": {"currency": "starFragments", "amount": 10000000}
+                        },
                     ]
                 },
                 "dragons":{
@@ -114,6 +125,86 @@ export const settings = {
                             "fog": {"currency": "dragons", "amount": 2},
                             "visible": {"currency": "dragons", "amount": 2}
                         },
+                    ]
+                },
+                "paint":{
+                    "value": 0,
+                    "key": "paint",
+                    "displayName": "Paint",
+                    "description": "Factory paint gathered from altered stars",
+                    "shopData":[
+                        {
+                            "id":"paintConversion",
+                            "level":0,
+                            "name": "Paint conversion",
+                            "baseCost": {"currency": "paint", "amount": 10},
+                            "upgradeType": "utility",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 1.8,
+                            "maxLevel": 9,
+                            "fog": {"currency": "paint", "amount": 1},
+                            "visible": {"currency": "paint", "amount": 5}
+                        },
+                        {
+                            "id":"paintValue",
+                            "level":0,
+                            "name": "Paint value",
+                            "baseCost": {"currency": "paint", "amount": 20},
+                            "upgradeType": "additive",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 1.9,
+                            "maxLevel": 40,
+                            "fog": {"currency": "paint", "amount": 5},
+                            "visible": {"currency": "paint", "amount": 10}
+                        },
+                        {
+                            "id":"paintMaxStars",
+                            "level":0,
+                            "name": "Paint more stars",
+                            "baseCost": {"currency": "paint", "amount": 30},
+                            "upgradeType": "utility",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 1.85,
+                            "maxLevel": 30,
+                            "fog": {"currency": "paint", "amount": 12},
+                            "visible": {"currency": "paint", "amount": 20}
+                        },
+                        {
+                            "id":"paintFragmentGain",
+                            "level":0,
+                            "name": "Fancier explosions",
+                            "baseCost": {"currency": "paint", "amount": 40},
+                            "upgradeType": "utility",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 2,
+                            "maxLevel": 25,
+                            "fog": {"currency": "paint", "amount": 15},
+                            "visible": {"currency": "paint", "amount": 25}
+                        },
+                        {
+                            "id":"paintMoreDragons",
+                            "level":0,
+                            "name": "Paint dragons",
+                            "baseCost": {"currency": "paint", "amount": 60},
+                            "upgradeType": "utility",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 2.2,
+                            "maxLevel": 10,
+                            "fog": {"currency": "paint", "amount": 25},
+                            "visible": {"currency": "paint", "amount": 40}
+                        },
+                        {
+                            "id":"dragonPaintTargeting",
+                            "level":0,
+                            "name": "Dragon artists",
+                            "baseCost": {"currency": "paint", "amount": 500},
+                            "upgradeType": "utility",
+                            "scaleType": "additive",
+                            "scaleAmount": 500,
+                            "maxLevel": 1,
+                            "fog": {"currency": "paint", "amount": 250},
+                            "visible": {"currency": "paint", "amount": 400}
+                        }
                     ]
                 }
             }

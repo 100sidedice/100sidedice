@@ -35,11 +35,18 @@ export default class UpgradeManager {
     }
     update(){
         const unlockLevel = this.getData('itemData', 'starFragments', "shopData")[2].level;
+        const paintUnlockLevel = this.getData('itemData', 'starFragments', "shopData")[3].level;
         const dragonItem = this.getData('itemData', 'dragons');
-        const dragonCount = unlockLevel >= 1 ? 1 + Number(dragonItem.shopData[0].level || 0) : 0;
+        const paintDragonBoost = this.getUpgradeById('paint', 'paintMoreDragons').level;
+        const dragonCount = unlockLevel >= 1 ? 1 + dragonItem.shopData[0].level + paintDragonBoost : 0;
 
         if (unlockLevel >= 1 && !this.getData('unlockedItems').includes('dragons')) {
             this.getData('unlockedItems').push('dragons');
+            this.generateItemList();
+        }
+
+        if (paintUnlockLevel >= 1 && !this.getData('unlockedItems').includes('paint')) {
+            this.getData('unlockedItems').push('paint');
             this.generateItemList();
         }
 
@@ -116,14 +123,19 @@ export default class UpgradeManager {
         }
         let gain = amount ?? this.calculateUpgradeValue(item.shopData, 1);
 
-        // Apply cross-item upgrades: sacrificeDragon (under dragons) multiplies star fragment gain
+        // Apply cross-item upgrades for star fragment gain only.
         if (itemKey === 'starFragments') {
             const sacrifice = this.getUpgradeById('dragons', 'sacrificeDragon');
-            const lvl = Number(sacrifice?.level ?? 0) || 0;
-            if (lvl > 0) {
-                // additive multiplier: each level adds +1 to the multiplier
-                const multiplier = 1 + lvl;
-                gain = gain * multiplier;
+            const sacrificeLevel = sacrifice.level;
+            const paintCatalystsLevel = this.getUpgradeById('paint', 'paintFragmentGain').level;
+
+            if (sacrificeLevel > 0) {
+                const sacrificeMultiplier = 1 + sacrificeLevel;
+                gain = gain * sacrificeMultiplier;
+            }
+            if (paintCatalystsLevel > 0) {
+                const paintMultiplier = 1 + (paintCatalystsLevel * 0.25);
+                gain = gain * paintMultiplier;
             }
         }
         item.value = (Number(item.value) || 0) + gain;

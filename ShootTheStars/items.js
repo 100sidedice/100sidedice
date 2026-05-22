@@ -46,16 +46,17 @@ export class Item {
             if (!this.upgradeManager.canAfford(upgrade.fog?.currency, upgrade.fog?.amount)) {
                 continue;
             }
-            const row = document.createElement('tr');
             const upgradeId = upgrade.id ?? upgrade.name ?? '';
             const cost = this.upgradeManager.getUpgradeCost(upgrade);
-            const canAfford = this.upgradeManager.canAfford(cost.currency, cost.amount);
             const maxLevel = Number(upgrade.maxLevel ?? Infinity);
             const atMax = (Number(upgrade.level ?? 0) || 0) >= maxLevel;
-            row.classList.add('shop-row');
             if (atMax) {
-                row.classList.add('shop-row-max');
-            } else if (!canAfford) {
+                continue;
+            }
+            const row = document.createElement('tr');
+            const canAfford = this.upgradeManager.canAfford(cost.currency, cost.amount);
+            row.classList.add('shop-row');
+            if (!canAfford) {
                 row.classList.add('shop-row-unaffordable');
             }
             row.innerHTML = `
@@ -64,12 +65,10 @@ export class Item {
                 <td>${this.formatCost(cost)}</td>
             `;
 
-            if (!atMax) {
-                row.addEventListener('click', () => {
-                    this.upgradeManager.purchaseUpgrade(this.data.key, upgradeId);
-                    this.openShop(); // Refresh shop after purchase
-                });
-            }
+            row.addEventListener('click', () => {
+                this.upgradeManager.purchaseUpgrade(this.data.key, upgradeId);
+                this.openShop(); // Refresh shop after purchase
+            });
             tbody.appendChild(row);
         }
 

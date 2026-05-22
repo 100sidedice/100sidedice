@@ -78,6 +78,7 @@ export default class Dragon {
         ctx.restore();
     }
     getNearestAvailableStar(){
+        const canTargetPaint = this.upgradeManager.getUpgradeById('paint', 'dragonPaintTargeting').level >= 1;
         const sortedStars = this.starManager.stars.slice().sort((a, b) => {
             const distA = Math.hypot(a.x - this.x, a.y - this.y);
             const distB = Math.hypot(b.x - this.x, b.y - this.y);
@@ -85,6 +86,9 @@ export default class Dragon {
         });
 
         for (const star of sortedStars) {
+            if (star.type === 'paint' && !canTargetPaint) {
+                continue;
+            }
             const alreadyTargeted = this.starManager.dragons.some(dragon => dragon !== this && dragon.targetStar === star);
             if (!alreadyTargeted) {
                 return star;

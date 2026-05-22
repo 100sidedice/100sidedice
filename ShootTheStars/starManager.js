@@ -21,6 +21,9 @@ export default class StarManager {
             })
         })
         this.dragons = [];
+        this.paintGemImage = new Image();
+        this.paintGemImage.src = 'Assets/paintgems.png';
+        this.paintColors = ['#ff4d4d', '#ffa24d', '#ffe34d', '#64d96f', '#4dc3ff', '#6f6dff', '#cf5cff'];
     }
     removeStar(star) {
         const starIndex = this.stars.indexOf(star)
@@ -44,10 +47,11 @@ export default class StarManager {
             return;
         }
         star._collected = true;
-        this.upgradeManager.addItemValue('starFragments');
+        this.upgradeManager.addItemValue(star.itemKey);
         star.onDeath();
     }
     update(){
+        this.maxStars = this.upgradeManager.getData("upgrades", "maxStars") + (this.upgradeManager.getUpgradeById('paint', 'paintMaxStars').level * 8);
         const canvas = this.input?.canvas || document.getElementById('stsCanvas');
         const cw = canvas.width || window.innerWidth;
         const ch = canvas.height || window.innerHeight;
@@ -101,7 +105,7 @@ export default class StarManager {
                     const dx = star.x - cx;
                     const dy = star.y - cy;
                     const dist = Math.hypot(dx, dy);
-                    const hitRadius = (star.collectionRadius ?? star.size) + cursorRadiusCanvas;
+                    const hitRadius = star.collectionRadius + cursorRadiusCanvas;
                     if (dist <= hitRadius) {
                         this.collectStar(star);
                     }
@@ -129,7 +133,15 @@ export default class StarManager {
     }
     spawnStar(){
         if (this.stars.length < this.maxStars) {
-            const star = new Star(this.upgradeManager, () => {this.removeStar(star)})
+            const paintUnlocked = this.upgradeManager.getUpgradeById('starFragments', 'unlockPaint').level >= 1;
+            const paintConversionLevel = this.upgradeManager.getUpgradeById('paint', 'paintConversion').level;
+            const paintChance = paintUnlocked ? Math.min(0.5, 0.05 + (paintConversionLevel * 0.05)) : 0;
+            const isPaint = Math.random() < paintChance;
+            const paintIndex = Math.floor(Math.random() * 7);
+            const starOptions = isPaint
+                ? { type: 'paint', paintSprite: this.paintGemImage, paintIndex, color: this.paintColors[paintIndex] }
+                : { type: 'star' };
+            const star = new Star(this.upgradeManager, () => {this.removeStar(star)}, starOptions)
             this.stars.push(star)
         }
     }
