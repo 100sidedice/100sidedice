@@ -121,7 +121,7 @@ export const settings = {
                             "upgradeType": "multipliciative",
                             "scaleType": "multiplicative",
                             "scaleAmount": 2,
-                            "maxLevel": 50,
+                            "maxLevel": 5,
                             "fog": {"currency": "dragons", "amount": 2},
                             "visible": {"currency": "dragons", "amount": 2}
                         },
