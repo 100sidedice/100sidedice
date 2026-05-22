@@ -56,6 +56,7 @@ export const settings = {
                             "fog": {"currency": "starFragments", "amount": 500000},
                             "visible": {"currency": "starFragments", "amount": 1000000}
                         },
+                        
                     ]
                 },
                 "dragons":{
@@ -99,6 +100,19 @@ export const settings = {
                             "maxLevel": 20,
                             "fog": {"currency": "starFragments", "amount": 1300000},
                             "visible": {"currency": "starFragments", "amount": 1400000}
+                        },
+                        {
+                            "id":"sacrificeDragon",
+                            "level":0,
+                            "name": "Sacrifice Dragon",
+                            "description": "Sacrifice one dragon to increase fragment gain.",
+                            "baseCost": {"currency": "dragons", "amount": 1},
+                            "upgradeType": "multipliciative",
+                            "scaleType": "multiplicative",
+                            "scaleAmount": 2,
+                            "maxLevel": 50,
+                            "fog": {"currency": "dragons", "amount": 2},
+                            "visible": {"currency": "dragons", "amount": 2}
                         },
                     ]
                 }

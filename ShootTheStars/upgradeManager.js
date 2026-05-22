@@ -114,8 +114,18 @@ export default class UpgradeManager {
         if (!item) {
             return 0;
         }
+        let gain = amount ?? this.calculateUpgradeValue(item.shopData, 1);
 
-        const gain = amount ?? this.calculateUpgradeValue(item.shopData, 1);
+        // Apply cross-item upgrades: sacrificeDragon (under dragons) multiplies star fragment gain
+        if (itemKey === 'starFragments') {
+            const sacrifice = this.getUpgradeById('dragons', 'sacrificeDragon');
+            const lvl = Number(sacrifice?.level ?? 0) || 0;
+            if (lvl > 0) {
+                // additive multiplier: each level adds +1 to the multiplier
+                const multiplier = 1 + lvl;
+                gain = gain * multiplier;
+            }
+        }
         item.value = (Number(item.value) || 0) + gain;
 
         if (refresh && this.items[itemKey]) {
