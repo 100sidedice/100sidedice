@@ -55,6 +55,9 @@ export default class Dragon {
     }
     draw(ctx){
         const size = 12;
+        if (!this.image || !this.image.complete || this.image.naturalWidth === 0) {
+            return;
+        }
         const targetX = this.targetStar?.x ?? (this.x - 1);
         const targetY = this.targetStar?.y ?? this.y;
         const maxTilt = 20 * (Math.PI / 180);

@@ -116,7 +116,7 @@ export default class StarManager {
         // update dragons
         if(this.dragons.length < this.upgradeManager.getData("itemData", "dragons", "value")){
             const dragonImage = new Image();
-            dragonImage.src = 'assets/dragon.png';
+            dragonImage.src = '../Assets/dragon.png';
             this.dragons.push(new Dragon(dragonImage, this.upgradeManager, this));
         }
         this.dragons.forEach(dragon => dragon.update());
