@@ -91,7 +91,7 @@ export const settings = {
                         {
                             "id":"dragonCollectionRadius",
                             "level":0,
-                            "name": "Dragon Collection Range",
+                            "name": "Dragon Reach",
                             "baseCost": {"currency": "starFragments", "amount": 1500000},
                             "upgradeType": "additive",
                             "scaleType": "additive",
