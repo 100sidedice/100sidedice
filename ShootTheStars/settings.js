@@ -28,7 +28,7 @@ export const settings = {
                             "upgradeType": "additive",
                             "scaleType": "additive",
                             "scaleAmount": 10,
-                            "maxLevel": 100,
+                            "maxLevel": 250,
                             "fog": {"currency": "starFragments", "amount": 5},
                             "visible": {"currency": "starFragments", "amount": 15}
                         },
