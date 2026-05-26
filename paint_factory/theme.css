@@ -2,24 +2,24 @@
     /** Globals **/
         --font-family: 'Arial', sans-serif;
         --text-color: white;
-        --background-color: #0c011b;
+        --background-color: #0c011b00;
         --border-width: 0.5rem;
-        --border-color: #7f0c8e55;
-        --text-color-muted: #d8cbe3;
-        --text-color-soft: #b993ab;
-        --text-color-subtle: #a280b1;
+        --border-color: #92929255;
+        --text-color-muted: #dddddd;
+        --text-color-soft: #bdbdbd;
+        --text-color-subtle: #b3b3b3;
         --text-color-dim: #444;
 
     /** Base Theme **/
-        --theme-surface-gradient-start: #7f0c8e55;
-        --theme-surface-gradient-end: #4a055355;
-        --theme-accent-gradient-start: #a434b355;
-        --theme-accent-gradient-end: #6e1b7955;
-        --theme-accent-outline-color: #a434b355;
+        --theme-surface-gradient-start: #353535;
+        --theme-surface-gradient-end: #272727;
+        --theme-accent-gradient-start: #b4b4b4FF;
+        --theme-accent-gradient-end: #7c7c7cFF;
+        --theme-accent-outline-color: #bdbdbdFF;
         --theme-accent-outline-width: 0.2rem;
-        --theme-accent-active-gradient-start: #35043b88;
-        --theme-accent-active-gradient-end: #23022788;
-        --theme-accent-active-outline-color: #bd7dc588;
+        --theme-accent-active-gradient-start: #3d3d3dFF;
+        --theme-accent-active-gradient-end: #272727FF;
+        --theme-accent-active-outline-color: #c5c5c5FF;
         --theme-accent-active-outline-width: var(--theme-accent-outline-width);
 
     /** Header **/
@@ -28,30 +28,30 @@
         --header-border-color: var(--theme-surface-gradient-start);
 
     /** Main Panels **/
-        --panel-gradient-start: var(--theme-surface-gradient-start);
-        --panel-gradient-end: var(--theme-surface-gradient-end);
+        --panel-gradient-start: #272727;
+        --panel-gradient-end: #272727;
 
     /** Buttons **/
         /* Buttons - Default */
             --button-gradient-start: var(--theme-surface-gradient-start);
             --button-gradient-end: var(--theme-surface-gradient-end);
-            --button-outline-color: var(--theme-accent-outline-color);
+            --button-outline-color: #888888FF;
             --button-outline-width: var(--theme-accent-outline-width);
             --button-tilt-deg: 0deg;
             --button-border-radius: 1em;
             
         /* Buttons - Hover */
-            --button-hover-gradient-start: var(--theme-accent-gradient-start);
-            --button-hover-gradient-end: var(--theme-accent-gradient-end);
-            --button-hover-outline-color: var(--theme-accent-outline-color);
+            --button-hover-gradient-start: #999999FF;
+            --button-hover-gradient-end: #999999FF;
+            --button-hover-outline-color: #888888FF;
             --button-hover-outline-width: var(--theme-accent-outline-width);
-            --button-hover-tilt-deg: -3deg;
+            --button-hover-tilt-deg: -1deg;
             
         /* Buttons - Active */
-            --button-active-outline-color: var(--theme-accent-active-outline-color);
+            --button-active-outline-color: #888888FF;
             --button-active-outline-width: var(--theme-accent-active-outline-width);
-            --button-active-gradient-start: var(--theme-accent-active-gradient-start);
-            --button-active-gradient-end: var(--theme-accent-active-gradient-end);
+            --button-active-gradient-start: #222255FF;;
+            --button-active-gradient-end: #222255FF;;
             --button-active-tilt-deg: 1deg;
 
     /** Alerts **/
@@ -75,8 +75,8 @@
         --shop-header-text-color: #efe6f5;
         --shop-divider-color: rgba(255, 255, 255, 0.18);
         --shop-row-separator-color: rgba(255, 255, 255, 0.12);
-        --shop-row-outline-color: #bd7dc588;
-        --shop-row-outline-width: 1px;
+        --shop-row-outline-color: var(--button-outline-color);
+        --shop-row-outline-width: var(--button-outline-width);
 
         /* Shop Rows - Default */
             --shop-row-default-gradient-start: var(--panel-gradient-start);
@@ -99,11 +99,13 @@
 }
 
 html, body {
-    background: var(--background-color);
     margin: 0;
     padding: 0;
     height: 100%;
     overflow-x: hidden;
+    background-image: url(../Assets/idle.png);
+    background-size: 11.11dvh 11.11dvh;
+    image-rendering: pixelated;
 }
 body {
     font-family: var(--font-family);
@@ -112,5 +114,4 @@ body {
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 16em 1fr;
 }
-
 

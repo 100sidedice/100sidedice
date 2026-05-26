@@ -23,3 +23,30 @@ header img {
     height: 5em;
     border-radius: 50%;
 }
+
+.profile-home-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    border-radius: 50%;
+    text-decoration: none;
+    transform: rotate(var(--button-tilt-deg));
+    transition: transform 200ms ease, background 200ms ease, outline-color 200ms ease, outline-width 200ms ease;
+}
+
+.profile-home-link:hover {
+    transform: rotate(var(--button-hover-tilt-deg));
+    cursor: pointer;
+
+}
+
+.profile-home-link:active {
+    transform: rotate(var(--button-active-tilt-deg)) scale(0.9);
+    cursor: grabbing;
+    user-select: none;
+}
+
+.profile-home-link img {
+    display: block;
+}

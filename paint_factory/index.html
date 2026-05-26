@@ -33,12 +33,12 @@
     }
     </script>
 
-    <link rel="icon" href="Assets/profilepic.png">
-    <link rel="stylesheet" href="Home/style.css">
-    <link rel="stylesheet" href="Home/board.css">
-    <link rel="stylesheet" href="Home/header.css">
-    <link rel="stylesheet" href="Home/navbar.css">
-    <link rel="stylesheet" href="ShootTheStars/stars.css">
+    <link rel="icon" href="../Assets/profilepic.png">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="../Home/board.css">
+    <link rel="stylesheet" href="../Home/header.css">
+    <link rel="stylesheet" href="../Home/navbar.css">
+    <link rel="stylesheet" href="../ShootTheStars/stars.css">
 </head>
 <body>
     <!-- Background (Shoot the stars [sts]) -->
@@ -134,11 +134,13 @@
         })();
     </script>
     
-    <script src="ShootTheStars/game.js" type="module"></script>
+    <script src="../ShootTheStars/game.js" type="module"></script>
 
     <!-- Header -->
     <header>
-        <img src="Assets/profilepic.png" alt="Profile Picture" id="profile-pic">
+        <a class="profile-home-link" href="../" aria-label="Go to homepage">
+            <img src="../Assets/profilepic.png" alt="Profile Picture" id="profile-pic">
+        </a>
         <h1 id="myName">100sidedice</h1>
     </header>
     <!--Shoot the stars item container-->
@@ -156,53 +158,21 @@
     <div id="item-shop" class="itemShopHidden">
         
     </div>
+
     <!-- Main content -->
     <main id="board">
         <section id="section-1">
             <hr class="section-break">
-            <h2>Games & software</h2>
+            <h2>Paint Factory</h2>
             <!--Paint Factory-->
             <article class="post">
                 <time datetime="2026-05-12">May 12, 2026</time>
                 <hr>
                 <figure>
-                    <a href="paint_factory">
-                        <img src="Assets/GameImages/PaintFactory.png" alt="Paint Factory">
+                    <a href="https://100sidedice.github.io/paintFactory2.0/" target="_blank" rel="noopener noreferrer">
+                        <img src="../Assets/GameImages/PaintFactory.png" alt="Paint Factory">
                     </a>
                     <figcaption>A puzzle game about mixing colors</figcaption>
-                </figure>
-            </article>
-            <!--Dragons Don't Like Tetris-->
-            <article class="post">
-                <time datetime="2025-10-32">October 32, 2025</time>
-                <hr>
-                <figure>
-                    <a href="https://100sidedice.github.io/DragonsDontLikeTetris/" target="_blank" rel="noopener noreferrer">
-                        <img src="Assets/GameImages/DragonsDontLikeTetris.png" alt="Dragons Don't Like Tetris">
-                    </a>
-                    <figcaption>A arcade game where you play as a dragon with the sole goal of destroying tetris.<br>Made for the itch.io falling blocks game jam 2025</figcaption>
-                </figure>
-            </article>
-            <!--Dwarves Are Stealing My Bread-->
-            <article class="post">
-                <time datetime="2025-12-31">December 31, 2025</time>
-                <hr>
-                <figure>
-                    <a href="https://100sidedice.github.io/DwarvesAreStealingMyBread/" target="_blank" rel="noopener noreferrer">
-                        <img src="Assets/GameImages/DwarvesAreStealingMyBread.png" alt="Dwarves Are Stealing My Bread">
-                    </a>
-                    <figcaption>A sandbox adventure game where you play as a dwarf trying to uncover the baked secrets of the holy bread.</figcaption>
-                </figure>
-            </article>
-            <!--Tic Tac Challenge-->
-            <article class="post">
-                <time datetime="2025-08-31">August 31, 2025</time>
-                <hr>
-                <figure>
-                    <a href="https://eligamer5678.itch.io/tic-tac-challange" target="_blank" rel="noopener noreferrer">
-                        <img src="Assets/GameImages/TicTacChallange.png" alt="Tic Tac Challenge">
-                    </a>
-                    <figcaption>A large puzzle game revolving around "what if we combined tic tac toe with temperature mechanics?"</figcaption>
                 </figure>
             </article>
         </section>
@@ -247,19 +217,19 @@
     </main>
     <!-- Navigation -->
     <aside>
-        <a class="button-1">Games</a>
+        <a class="button-1">Image</a>
         <a class="button-2">About</a>
         <a class="button-3">Q/A</a>
         <a class="button-4">Contact</a>
         <a class="play">Play!</a>
     </aside>
     <footer>
-        <a class="button-1">Games</a>
+        <a class="button-1">Image</a>
         <a class="button-2">About</a>
         <a class="button-3">Q/A</a>
         <a class="button-4">Contact</a>
         <a class="play">Play!</a>
     </footer>
-    <script src="main.js" type="module"></script>
+    <script src="../main.js" type="module"></script>
 </body>
 </html>
