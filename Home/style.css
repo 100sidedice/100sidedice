@@ -1,46 +1,104 @@
+:root {
+    /** Globals **/
+        --font-family: 'Arial', sans-serif;
+        --text-color: white;
+        --background-color: #0c011b;
+        --border-width: 0.5rem;
+        --border-color: #7f0c8e55;
+        --text-color-muted: #d8cbe3;
+        --text-color-soft: #b993ab;
+        --text-color-subtle: #a280b1;
+        --text-color-dim: #444;
+
+    /** Header **/
+        --header-gradient-start: #7f0c8e55;
+        --header-gradient-end: #4a055355;
+        --header-border-color: #7f0c8e55;
+
+    /** Main Panels **/
+        --panel-gradient-start: #7f0c8e55;
+        --panel-gradient-end: #4a055355;
+
+    /** Buttons **/
+        /* Buttons - Default */
+            --button-gradient-start: #7f0c8e55;
+            --button-gradient-end: #4a055355;
+            --button-outline-color: #a434b355;
+            --button-outline-width: 0.2rem;
+            --button-tilt-deg: 0deg;
+            --button-border-radius: 1em;
+            
+        /* Buttons - Hover */
+            --button-hover-gradient-start: #a434b355;
+            --button-hover-gradient-end: #6e1b7955;
+            --button-hover-outline-color: #a434b355;
+            --button-hover-outline-width: 0.2rem;
+            --button-hover-tilt-deg: -3deg;
+            
+        /* Buttons - Active */
+            --button-active-outline-color: #bd7dc588;
+            --button-active-outline-width: 0.2rem;
+            --button-active-gradient-start: #35043b88;
+            --button-active-gradient-end: #23022788;
+            --button-active-tilt-deg: 1deg;
+
+    /** Alerts **/
+        --alert-outline-color: #ff000033;
+        --alert-gradient-start: #8e0c0c55;
+        --alert-gradient-end: #53050555;
+
+    /** Board / Post **/
+        --media-hover-outline-color: #00b3ffff;
+        --media-active-outline-color: rgb(0, 59, 84);
+        --post-divider-color: rgba(255, 255, 255, 0.12);
+
+    /** Link / Brand **/
+        --sts-highlight-color: #fb00ff;
+        --youtube-color: red;
+        --github-color: #ffffff;
+        --email-primary-color: #7979ff;
+        --email-secondary-color: #00ffffff;
+
+    /** Shop **/
+        --shop-header-text-color: #efe6f5;
+        --shop-divider-color: rgba(255, 255, 255, 0.18);
+        --shop-row-separator-color: rgba(255, 255, 255, 0.12);
+        --shop-row-outline-color: #bd7dc588;
+        --shop-row-outline-width: 1px;
+
+        /* Shop Rows - Default */
+            --shop-row-default-gradient-start: var(--panel-gradient-start);
+            --shop-row-default-gradient-end: var(--panel-gradient-end);
+            --shop-row-default-outline-width: var(--button-outline-width);
+            --shop-row-default-outline-color: var(--button-outline-color);
+
+        /* Shop Rows - Hover */
+            --shop-row-hover-gradient-start: var(--button-hover-gradient-start);
+            --shop-row-hover-gradient-end: var(--button-hover-gradient-end);
+            --shop-row-hover-outline-width: var(--button-hover-outline-width);
+            --shop-row-hover-outline-color: var(--button-hover-outline-color);
+
+        /* Shop Rows - Active */
+            --shop-row-active-gradient-start: var(--button-active-gradient-start);
+            --shop-row-active-gradient-end: var(--button-active-gradient-end);
+            --shop-row-active-outline-width: var(--shop-row-outline-width);
+            --shop-row-active-outline-color: var(--shop-row-outline-color);
+            --shop-row-active-text-color: var(--text-color-soft);
+}
+
 html, body {
-    background: #0c011b;
+    background: var(--background-color);
     margin: 0;
     padding: 0;
     height: 100%;
     overflow-x: hidden;
 }
-
-
-
 body {
+    font-family: var(--font-family);
+    color: var(--text-color);
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 16em 1fr;
 }
-header {
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1em;
-    height: 7em;
-    grid-column: 1 / -1;
-    position: relative;
-    z-index: 1;
-    border-bottom: 0.5rem solid #7f0c8e55;
-}
-header h1 {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    text-align: left;
-    font-size: 1.1em;
-}
-header img {
-    width: 5em;
-    height: 5em;
-    border-radius: 50%;
-}
 
-/* Play button alert (flicker) */
-.alert {
-    outline: 3px solid #FF000033;
-    background: linear-gradient(to bottom, #8e0c0c55, #53050555) !important;
-}
+

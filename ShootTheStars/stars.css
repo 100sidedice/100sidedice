@@ -14,7 +14,7 @@
 }
 
 #items-container {
-    background:linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    background: linear-gradient(to bottom, var(--panel-gradient-start), var(--panel-gradient-end));
     grid-row: 2;
     grid-column: 2;
     position: relative;
@@ -27,7 +27,7 @@
     flex-direction: row;
     overflow-x: auto;
     white-space: nowrap;
-    border-bottom: 0.5rem solid #7f0c8e55;
+    border-bottom: var(--border-width) solid var(--border-color);
     gap: 0.6rem;
     padding: 0.5rem 0.75rem;
     box-sizing: border-box;
@@ -39,24 +39,26 @@
     display: inline-block; 
     text-align:center;
     margin:0.3rem;
-    background:linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    color:#FFF;
+    background: linear-gradient(to bottom, var(--button-gradient-start), var(--button-gradient-end));
+    color: var(--text-color);
     padding:1rem;
     box-sizing: border-box;
     border-radius: 0.5rem;
     transition: transform 200ms ease;
+    outline: var(--button-outline-width) solid var(--button-outline-color);
 }
 
 #items-container p:hover {
-    transform: rotate(-3deg);
-    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    transform: rotate(var(--button-hover-tilt-deg));
+    background: linear-gradient(to bottom, var(--button-hover-gradient-start), var(--button-hover-gradient-end));
+    outline: var(--button-hover-outline-width) solid var(--button-hover-outline-color);
     cursor: pointer;
 }
 #items-container p:active {
-    transform: rotate(1deg) scale(0.9);
-    background: linear-gradient(to bottom, #35043b88, #23022788);
-    outline: 1px solid #bd7dc588;
-    color: #b993ab;
+    transform: rotate(var(--button-active-tilt-deg)) scale(0.9);
+    background: linear-gradient(to bottom, var(--button-active-gradient-start), var(--button-active-gradient-end));
+    outline: var(--button-active-outline-width) solid var(--button-active-outline-color);
+    color: var(--text-color-soft);
     user-select: none;
     cursor:grabbing;
 }
@@ -72,10 +74,10 @@
 }
 
 #item-shop {
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    background: linear-gradient(to bottom, var(--panel-gradient-start), var(--panel-gradient-end));
     grid-row: 2;
     grid-column: 2;
-    color: #fff;
+    color: var(--text-color);
     z-index: 1;
     min-height: 0; /* allow the grid item to shrink and enable internal scrolling */
     overflow-y: auto; /* make the item shop its own scroll container */
@@ -99,8 +101,8 @@
 
 .shop-table thead th {
     padding: 0 1rem 0.5rem;
-    color: #efe6f5;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--shop-header-text-color);
+    border-bottom: 1px solid var(--shop-divider-color);
 }
 
 .shop-table thead th:first-child {
@@ -115,16 +117,26 @@
     text-align: right;
 }
 
+.shop-table tbody tr {
+    transition: background 200ms ease, color 200ms ease;
+}
+
 .shop-table tbody tr td {
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    --shop-row-current-outline-width: var(--shop-row-default-outline-width);
+    --shop-row-current-outline-color: var(--shop-row-default-outline-color);
+    background: linear-gradient(to bottom, var(--shop-row-default-gradient-start), var(--shop-row-default-gradient-end));
+    border-top: var(--shop-row-current-outline-width) solid var(--shop-row-current-outline-color);
+    border-bottom: var(--shop-row-current-outline-width) solid var(--shop-row-current-outline-color);
     padding: 0.9rem 1rem;
-    color: #fff;
+    color: var(--text-color);
     vertical-align: middle;
     overflow-wrap: anywhere;
     white-space: normal;
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease, border-width 200ms ease;
 }
 
 .shop-table tbody tr td:first-child {
+    border-left: var(--shop-row-current-outline-width) solid var(--shop-row-current-outline-color);
     border-radius: 1rem 0 0 1rem;
     width: 48%;
 }
@@ -135,22 +147,23 @@
 }
 
 .shop-table tbody tr td:last-child {
+    border-right: var(--shop-row-current-outline-width) solid var(--shop-row-current-outline-color);
     border-radius: 0 1rem 1rem 0;
     width: 38%;
     text-align: right;
 }
 
-.shop-table tbody tr + tr td {
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
 .shop-table tbody tr:hover td {
-    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    --shop-row-current-outline-width: var(--shop-row-hover-outline-width);
+    --shop-row-current-outline-color: var(--shop-row-hover-outline-color);
+    background: linear-gradient(to bottom, var(--shop-row-hover-gradient-start), var(--shop-row-hover-gradient-end));
 }
 
 .shop-table tbody tr:active td {
-    background: linear-gradient(to bottom, #35043b88, #23022788);
-    color: #b993ab;
+    --shop-row-current-outline-width: var(--shop-row-active-outline-width);
+    --shop-row-current-outline-color: var(--shop-row-active-outline-color);
+    background: linear-gradient(to bottom, var(--shop-row-active-gradient-start), var(--shop-row-active-gradient-end));
+    color: var(--shop-row-active-text-color);
 }
 
 .shop-row {
@@ -158,7 +171,7 @@
 }
 
 .shop-row:hover td {
-    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    background: linear-gradient(to bottom, var(--shop-row-hover-gradient-start), var(--shop-row-hover-gradient-end));
 }
 
 .shop-row-max,

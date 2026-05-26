@@ -1,0 +1,25 @@
+header {
+    background: linear-gradient(to bottom, var(--header-gradient-start), var(--header-gradient-end));
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1em;
+    height: 7em;
+    grid-column: 1 / -1;
+    position: relative;
+    z-index: 1;
+    border-bottom: var(--border-width) solid var(--header-border-color);
+}
+header h1 {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    text-align: left;
+    font-size: 1.1em;
+}
+header img {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+}

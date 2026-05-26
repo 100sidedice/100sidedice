@@ -2,8 +2,8 @@
 #board {
     grid-row: 2;
     grid-column: 2;
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    color: #fff;
+    background: linear-gradient(to bottom, var(--panel-gradient-start), var(--panel-gradient-end));
+    color: var(--text-color);
     z-index: 1;
     min-height: 0; /* allow the grid item to shrink and enable internal scrolling */
     overflow-y: auto; /* make the board its own scroll container */
@@ -14,16 +14,16 @@
 }
 article {
     flex: 1; 
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    border-radius: 1em;
+    background: linear-gradient(to bottom, var(--panel-gradient-start), var(--panel-gradient-end));
+    border-radius: var(--button-border-radius);
     text-align:center;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(0deg);
+    transform: rotate(var(--button-tilt-deg));
     transition: transform 200ms ease;
-    color: #FFFFFFFF;
+    color: var(--text-color);
     margin: 0 0 1rem 0;
 }   
 article img {
@@ -36,12 +36,12 @@ article img {
 article img:hover{
     transform: rotate(-1deg);
     cursor: pointer;
-    outline: 5px solid #00b3ffFF;
+    outline: 5px solid var(--media-hover-outline-color);
 }
 article img:active{
     transform: rotate(1deg) scale(0.9);
     cursor:grabbing;
-    outline: 5px solid rgb(0, 59, 84);
+    outline: 5px solid var(--media-active-outline-color);
 }
 article h2 {
     margin:1rem
@@ -58,14 +58,14 @@ article p {
 .post hr {
     width: 60%;
     border: none;
-    border-top: 2px solid rgba(255,255,255,0.12);
+        border-top: 2px solid var(--post-divider-color);
     margin: 0 auto
 }
 
 .post time {
   display: block;
   font-size: 0.85rem;
-  color: #d8cbe3;
+    color: var(--text-color-muted);
   opacity: 0.9;
   margin: 0.5rem;
   text-align: center;
@@ -76,37 +76,37 @@ article p {
 }
 
 #sts {
-    color:#fb00ff
+    color: var(--sts-highlight-color);
 }
 
 #contact-info {
     text-align: left;
-    color: #a280b1;
+    color: var(--text-color-subtle);
     font-size: 0.8rem;
 }
 #contact-info a{
     text-decoration: none;
-    color: #a280b1;
+    color: var(--text-color-subtle);
 }
 #contact-info a:hover{
     text-decoration:underline !important;
-    color:#FFF;
+    color: var(--text-color);
     cursor:pointer;
 }
 #contact-info a:active{
     text-decoration:underline !important;
-    color:#444;
+    color: var(--text-color-dim);
     cursor:grabbing;
 }
 #youtube {
-    color:red;
+    color: var(--youtube-color);
 }
 #github {
-    color: #ffffff;
+    color: var(--github-color);
 }
 #email {
-    color:#7979ff;
+    color: var(--email-primary-color);
 }
 #email2 {
-    color:#00FFFFFF;
+    color: var(--email-secondary-color);
 }

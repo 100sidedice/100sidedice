@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 aside {
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    background: linear-gradient(to bottom, var(--panel-gradient-start), var(--panel-gradient-end));
     width: 16em;
     display: flex;
     flex-direction: column;
@@ -15,31 +15,33 @@ aside {
     overflow: auto;
     position: relative;
     z-index: 1;
-    border-right: 0.5rem solid #7f0c8e55;
+    border-right: var(--border-width) solid var(--border-color);
 }
 aside a { 
     flex: 1; 
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    border-radius: 1em;
+    background: linear-gradient(to bottom, var(--button-gradient-start), var(--button-gradient-end));
+    border-radius: var(--button-border-radius);
     text-align:center;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(0deg);
+    transform: rotate(var(--button-tilt-deg));
     transition: transform 200ms ease;
-    color: #FFFFFFFF;
+    outline: var(--button-outline-width) solid var(--button-outline-color);
+    color: var(--text-color);
 }
 aside a:hover {
-    transform: rotate(-3deg);
-    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    transform: rotate(var(--button-hover-tilt-deg));
+    background: linear-gradient(to bottom, var(--button-hover-gradient-start), var(--button-hover-gradient-end));
+    outline: var(--button-hover-outline-width) solid var(--button-hover-outline-color);
     cursor: pointer;
 }
 aside a:active {
-    transform: rotate(1deg) scale(0.9);
-    background: linear-gradient(to bottom, #35043b88, #23022788);
-    outline: 1px solid #bd7dc588;
-    color: #b993ab;
+    transform: rotate(var(--button-active-tilt-deg)) scale(0.9);
+    background: linear-gradient(to bottom, var(--button-active-gradient-start), var(--button-active-gradient-end));
+    outline: var(--button-active-outline-width) solid var(--button-active-outline-color);
+    color: var(--text-color-soft);
     user-select: none;
     cursor:grabbing;
 }
@@ -47,7 +49,7 @@ aside a:active {
 footer {
     grid-row: 3;
     grid-column: 1 / -1;  /* spans both columns */
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
+    background: linear-gradient(to bottom, var(--panel-gradient-start), var(--panel-gradient-end));
     width: 100%;
     display: none;
     align-items: center;
@@ -56,34 +58,41 @@ footer {
     height: 8em;
     position: relative;
     z-index: 1;
-    border-top: 0.5rem solid #7f0c8e55;
+    border-top: var(--border-width) solid var(--border-color);
 }
 footer a { 
     flex: 1; 
-    background: linear-gradient(to bottom, #7f0c8e55, #4a055355);
-    border-radius: 1em;
+    background: linear-gradient(to bottom, var(--button-gradient-start), var(--button-gradient-end));
+    border-radius: var(--button-border-radius);
     text-align:center;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(0deg);
+    transform: rotate(var(--button-tilt-deg));
     transition: transform 200ms ease;
-    color: #FFFFFFFF;
+    outline: var(--button-outline-width) solid var(--button-outline-color);
+    color: var(--text-color);
     min-height: 90%;
 }
 footer a:hover {
-    transform: rotate(-3deg);
-    background: linear-gradient(to bottom, #a434b355, #6e1b7955);
+    transform: rotate(var(--button-hover-tilt-deg));
+    background: linear-gradient(to bottom, var(--button-hover-gradient-start), var(--button-hover-gradient-end));
+    outline: var(--button-hover-outline-width) solid var(--button-hover-outline-color);
     cursor: pointer;
 }
 footer a:active {
-    transform: rotate(1deg) scale(0.9);
-    background: linear-gradient(to bottom, #35043b88, #23022788);
-    outline: 1px solid #bd7dc588;
-    color: #b993ab;
+    transform: rotate(var(--button-active-tilt-deg)) scale(0.9);
+    background: linear-gradient(to bottom, var(--button-active-gradient-start), var(--button-active-gradient-end));
+    outline: var(--button-active-outline-width) solid var(--button-active-outline-color);
+    color: var(--text-color-soft);
     user-select: none;
     cursor:grabbing;
+}
+/* Play button alert (flicker) */
+.alert {
+    outline: 3px solid var(--alert-outline-color);
+    background: linear-gradient(to bottom, var(--alert-gradient-start), var(--alert-gradient-end)) !important;
 }
 @media (max-width: 768px) {
     body {
@@ -98,7 +107,7 @@ footer a:active {
     #board {
         grid-column: 1/-1;  /* ensure it fills the single column */
         margin-left: 0rem;
-        border-left: 0rem solid #7f0c8e55;
+        border-left: 0rem solid var(--border-color);
     }
     #items-container { 
         grid-column: 1/-1 !important;
