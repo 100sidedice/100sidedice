@@ -59,10 +59,19 @@
         --alert-gradient-start: #8e0c0c55;
         --alert-gradient-end: #53050555;
 
-    /** Board / Post **/
+    /** Board **/
         --media-hover-outline-color: #00b3ffff;
         --media-active-outline-color: rgb(0, 59, 84);
         --post-divider-color: rgba(255, 255, 255, 0.12);
+        --post-gradient-start: var(--panel-gradient-start);
+        --post-gradient-end: var(--panel-gradient-end);
+
+        /* Post outlines (template - transparent by default) */
+            --post-outline-color: transparent;
+            --post-outline-width: var(--theme-accent-outline-width);
+            --post-hover-outline-color: transparent;
+            --post-hover-outline-width: var(--theme-accent-active-outline-width);
+            --post-outline-offset: 0rem;
 
     /** Link / Brand **/
         --sts-highlight-color: #fb00ff;
@@ -112,5 +121,3 @@ body {
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 16em 1fr;
 }
-
-

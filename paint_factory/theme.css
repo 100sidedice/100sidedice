@@ -63,6 +63,15 @@
         --media-hover-outline-color: #00b3ffff;
         --media-active-outline-color: rgb(0, 59, 84);
         --post-divider-color: rgba(255, 255, 255, 0.12);
+        --post-gradient-start: #3a3a3a;
+        --post-gradient-end: #3a3a3a;
+
+        /* Post outlines */
+            --post-outline-color: var(--theme-accent-outline-color);
+            --post-outline-width: var(--theme-accent-outline-width);
+            --post-hover-outline-color: var(--theme-accent-active-outline-color);
+            --post-hover-outline-width: var(--theme-accent-active-outline-width);
+            --post-outline-offset: 0rem;
 
     /** Link / Brand **/
         --sts-highlight-color: #fb00ff;

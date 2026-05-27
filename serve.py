@@ -40,7 +40,7 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Serve the project with cache disabled.")
     parser.add_argument("--host", default="127.0.0.1", help="Host to bind to")
-    parser.add_argument("--port", type=int, default=8000, help="Port to bind to")
+    parser.add_argument("--port", type=int, default=3001, help="Port to bind to")
     parser.add_argument(
         "--directory",
         default=str(Path(__file__).resolve().parent),
