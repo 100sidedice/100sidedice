@@ -1,0 +1,131 @@
+:root {
+    /** Globals **/
+        --font-family: 'Arial', sans-serif;
+        --text-color: white;
+        --background-color: #0c011b00;
+        --border-width: 0.5rem;
+        --border-color: #92929255;
+        --text-color-muted: #dddddd;
+        --text-color-soft: #bdbdbd;
+        --text-color-subtle: #b3b3b3;
+        --text-color-dim: #444;
+
+    /** Base Theme **/
+        --theme-surface-gradient-start: #141414;
+        --theme-surface-gradient-end: #0c0c0c;
+        --theme-accent-gradient-start: #b4b4b4FF;
+        --theme-accent-gradient-end: #7c7c7cFF;
+        --theme-accent-outline-color: #bdbdbdFF;
+        --theme-accent-outline-width: 0.2rem;
+        --theme-accent-active-gradient-start: #3d3d3dFF;
+        --theme-accent-active-gradient-end: #272727FF;
+        --theme-accent-active-outline-color: #c5c5c5FF;
+        --theme-accent-active-outline-width: var(--theme-accent-outline-width);
+
+    /** Header **/
+        --header-gradient-start: var(--theme-surface-gradient-start);
+        --header-gradient-end: var(--theme-surface-gradient-end);
+        --header-border-color: var(--border-color);
+
+    /** Main Panels **/
+        --panel-gradient-start:var(--theme-surface-gradient-start);
+        --panel-gradient-end: var(--theme-surface-gradient-end);
+
+    /** Buttons **/
+        /* Buttons - Default */
+            --button-gradient-start: #990000;
+            --button-gradient-end: #330000;
+            --button-outline-color: rgb(200, 0, 0);
+            --button-outline-width: var(--theme-accent-outline-width);
+            --button-tilt-deg: 0deg;
+            --button-border-radius: 1em;
+            
+        /* Buttons - Hover */
+            --button-hover-gradient-start: #d80000;
+            --button-hover-gradient-end: #8b0000;
+            --button-hover-outline-color: rgb(200, 0, 0);
+            --button-hover-outline-width: var(--theme-accent-outline-width);
+            --button-hover-tilt-deg: -1deg;
+            
+        /* Buttons - Active */
+            --button-active-outline-color: #888888FF;
+            --button-active-outline-width: var(--theme-accent-active-outline-width);
+            --button-active-gradient-start: #5b0000;
+            --button-active-gradient-end: #300000;
+            --button-active-tilt-deg: 1deg;
+
+    /** Alerts **/
+        --alert-outline-color: #ff000033;
+        --alert-gradient-start: #8e0c0c55;
+        --alert-gradient-end: #53050555;
+
+    /** Board / Post **/
+        --media-hover-outline-color: #00b3ffff;
+        --media-active-outline-color: rgb(0, 59, 84);
+        --post-divider-color: rgba(255, 255, 255, 0.12);
+        --post-gradient-start: var(--panel-gradient-start);
+        --post-gradient-end: var(--panel-gradient-end);
+
+        /* Post outlines */
+            --post-outline-color: var(--theme-accent-outline-color);
+            --post-outline-width: var(--theme-accent-outline-width);
+            --post-hover-outline-color: var(--theme-accent-active-outline-color);
+            --post-hover-outline-width: var(--theme-accent-active-outline-width);
+            --post-outline-offset: 0rem;
+
+    /** Link / Brand **/
+        --sts-highlight-color: #fb00ff;
+        --youtube-color: red;
+        --github-color: #ffffff;
+        --email-primary-color: #7979ff;
+        --email-secondary-color: #00ffffff;
+
+    /** Shop **/
+        --shop-header-text-color: #efe6f5;
+        --shop-divider-color: rgba(255, 255, 255, 0.18);
+        --shop-row-separator-color: rgba(255, 255, 255, 0.12);
+        --shop-row-outline-color: var(--button-outline-color);
+        --shop-row-outline-width: var(--button-outline-width);
+
+        /* Shop Rows - Default */
+            --shop-row-default-gradient-start: var(--button-gradient-start);
+            --shop-row-default-gradient-end: var(--button-gradient-end);
+            --shop-row-default-outline-width: var(--button-outline-width);
+            --shop-row-default-outline-color: var(--button-outline-color);
+
+        /* Shop Rows - Hover */
+            --shop-row-hover-gradient-start: var(--button-hover-gradient-start);
+            --shop-row-hover-gradient-end: var(--button-hover-gradient-end);
+            --shop-row-hover-outline-width: var(--button-hover-outline-width);
+            --shop-row-hover-outline-color: var(--button-hover-outline-color);
+
+        /* Shop Rows - Active */
+            --shop-row-active-gradient-start: var(--button-active-gradient-start);
+            --shop-row-active-gradient-end: var(--button-active-gradient-end);
+            --shop-row-active-outline-width: var(--shop-row-outline-width);
+            --shop-row-active-outline-color: var(--shop-row-outline-color);
+            --shop-row-active-text-color: var(--text-color-soft);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    background-image: url(../Assets/ddltLandscape.png);
+    background-size: cover;
+    image-rendering: pixelated;
+}
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 16em 1fr;
+}
+@media (max-width: 780px) {
+    body {
+        background-image: url(../Assets/ddltPortrait.png);
+    }
+}
+

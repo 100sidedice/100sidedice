@@ -33,12 +33,12 @@
     }
     </script>
 
-    <link rel="icon" href="Assets/profilepic.png">
-    <link rel="stylesheet" href="Home/style.css">
-    <link rel="stylesheet" href="Home/board.css">
-    <link rel="stylesheet" href="Home/header.css">
-    <link rel="stylesheet" href="Home/navbar.css">
-    <link rel="stylesheet" href="ShootTheStars/stars.css">
+    <link rel="icon" href="../Assets/profilepic.png">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="../Home/board.css">
+    <link rel="stylesheet" href="../Home/header.css">
+    <link rel="stylesheet" href="../Home/navbar.css">
+    <link rel="stylesheet" href="../ShootTheStars/stars.css">
 </head>
 <body>
     <!-- Background (Shoot the stars [sts]) -->
@@ -134,11 +134,13 @@
         })();
     </script>
     
-    <script src="ShootTheStars/game.js" type="module"></script>
+    <script src="../ShootTheStars/game.js" type="module"></script>
 
     <!-- Header -->
     <header>
-        <img src="Assets/profilepic.png" alt="Profile Picture" id="profile-pic">
+        <a class="profile-home-link" href="../" aria-label="Go to homepage">
+            <img src="../Assets/profilepic.png" alt="Profile Picture" id="profile-pic">
+        </a>
         <h1 id="myName">100sidedice</h1>
     </header>
     <!--Shoot the stars item container-->
@@ -156,53 +158,20 @@
     <div id="item-shop" class="itemShopHidden">
         
     </div>
+
     <!-- Main content -->
     <main id="board">
         <section id="section-1">
             <hr class="section-break">
-            <h2>Games & software</h2>
-            <!--Paint Factory-->
+            <h2>Dragons Don't Like Tetris</h2>
             <article class="post">
                 <time datetime="2026-05-12">May 12, 2026</time>
                 <hr>
                 <figure>
-                    <a href="paint_factory">
-                        <img src="Assets/GameImages/PaintFactory.png" alt="Paint Factory">
+                    <a href="https://100sidedice.github.io/DragonsDontLikeTetris/" target="_blank" rel="noopener noreferrer">
+                        <img src="../Assets/GameImages/DragonsDontLikeTetris.png" alt="Dragons Don't Like Tetris">
                     </a>
-                    <figcaption>A puzzle game about mixing colors</figcaption>
-                </figure>
-            </article>
-            <!--Dragons Don't Like Tetris-->
-            <article class="post">
-                <time datetime="2025-10-32">October 32, 2025</time>
-                <hr>
-                <figure>
-                    <a href="dragons_dont_like_tetris">
-                        <img src="Assets/GameImages/DragonsDontLikeTetris.png" alt="Dragons Don't Like Tetris">
-                    </a>
-                    <figcaption>A arcade game where you play as a dragon with the sole goal of destroying tetris.<br>Made for the itch.io falling blocks game jam 2025</figcaption>
-                </figure>
-            </article>
-            <!--Dwarves Are Stealing My Bread-->
-            <article class="post">
-                <time datetime="2025-12-31">December 31, 2025</time>
-                <hr>
-                <figure>
-                    <a href="https://100sidedice.github.io/DwarvesAreStealingMyBread/" target="_blank" rel="noopener noreferrer">
-                        <img src="Assets/GameImages/DwarvesAreStealingMyBread.png" alt="Dwarves Are Stealing My Bread">
-                    </a>
-                    <figcaption>A sandbox adventure game where you play as a dwarf trying to uncover the baked secrets of the holy bread.</figcaption>
-                </figure>
-            </article>
-            <!--Tic Tac Challenge-->
-            <article class="post">
-                <time datetime="2025-08-31">August 31, 2025</time>
-                <hr>
-                <figure>
-                    <a href="https://eligamer5678.itch.io/tic-tac-challange" target="_blank" rel="noopener noreferrer">
-                        <img src="Assets/GameImages/TicTacChallange.png" alt="Tic Tac Challenge">
-                    </a>
-                    <figcaption>A large puzzle game revolving around "what if we combined tic tac toe with temperature mechanics?"</figcaption>
+                    <figcaption>A arcade game where you play as a dragon with the sole goal of destroying tetris.</figcaption>
                 </figure>
             </article>
         </section>
@@ -210,56 +179,62 @@
             <hr class="section-break">
             <h2>About</h2>
             <article class="post">
-                <h3>Me, Elijah Delima (100sidedice).</h3>
+                <h3>Dragons Don't Like Tetris!</h3>
                 <hr>
-                <p>I am a aspiring web game/software developer.  <br> I mainly code in Javascript, every now and then Python or Godot.</p>
+                <p>Dragons Don't like tetris is a simple, fast paced arcade game where you play as a dragon and try to destroy falling tetris pieces to gain power, at certain power levels, you gain abilities like regen & multishot.</p>
                 <hr>
-                <h4>History</h4>
+                <h3>Development</h3>
                 <hr>
-                <p>I stared programming in 6th grade, during Covid, on Khan academy. I kinda just wanted to learn how, not for really any reason at the time.  Over the next couple years, I became pretty fluent programming on Khan academy, but I felt limited by the environment, so I started learning a few different languages, like python, C#, godot, etc. Eventrally, I ended up settling back to JS, as it's just the language I was most confortable with. But that time was different, as I was fully working in a browser rather then a sandboxed learning platform.   Then my skill started to majorly grow. Over the next few years in highschool, I learend content creation on youtube, godot, python/pygame, how to use firebase and make multiplayer/online services. How to make advanced data structure, etc. And that brings us to today. I am mainly doing game development, with a side of software & game asset creation. </p>
+                <h4>Itch.io falling blocks game jam</h4>
+                <p>
+                    This was a 9-day long game jam with the theme of "falling blocks". I wanted a reletivly simple game that still was fun to play & decently impressive technically.
+                    My original concept was a puzzle adventure game where you play as a tetrimino and have to "fit in" to different enviroments, but it didn't seem feasable for me at the time for my skill level, so I pivoted to this idea.
+                </p>
                 <hr>
-                <h4>This site</h4>
+                <h4>The AI</h4>
+                <p>
+                    The AI uses a simple heuristic system to determing where to place pieces. It has no lookahead and only considers the current position.
+                    The weight groups are as follows: # of edges touching, # holes, # line clears, # of blocks in a row, penalty for having a 1-column gap, penalty for leaving overhangs, and overall bumpiness.
+                    It's record in testing for me was surviving 45 seconds at level 29 speeds (also known as the kill screen in tetris - 1 frame per grid tile descent).
+                </p>
                 <hr>
-                <p>At heart, I am a game developer, and I didn't want to make my own site a <i>boring, static site.</i> You may notice the stars in the background. It's a little incremental game I made called <strong id="sts">Shoot the stars.</strong> Try clicking play & click on the stars to gain some star fragments.</p>
+                <h4>Post game jam development</h4>
+                <p>
+                    A game's story does not end when the game jam ends. I had gave the game about a month of extra development time after the jam period to add polish.
+                </p>
+                <hr>
+                <h4>A secret feature</h4>
+                <p>
+                    There is no UI for this, but click the top left corner of the game's screen to open a inline console and then type 'enablecolab' in the bottom bar.
+                </p>
+
             </article>
         </section>
         <section id="section-3">
             <hr class="section-break">
             <h2>Q/A</h2>
-            <article>
-                <p>tbd</p>
-            </article>
-        </section>
-        <section id="section-4">
-            <hr class="section-break">
-            <h2>Contact</h2>
-            <article>
-                <p id="contact-info">
-                    <a href="https://www.youtube.com/@100SideDice" target="_blank" rel="noopener noreferrer"><strong id="youtube">YouTube</strong>:https://www.youtube.com/@100SideDice</a>
-                    <a href="https://github.com/100sidedice?tab=repositories" target="_blank" rel="noopener noreferrer"><strong id="github">GitHub</strong>:https://github.com/100sidedice</a>
-                    <br>
-                    <a href="mailto:elidelima567@gmail.com"><strong id="email">Primary Email:</strong> elidelima567@gmail.com</a>
-                    <br>
-                    <a href="mailto:moreskilltreegames@gmail.com"><strong id="email2">Secondary Email:</strong> moreskilltreegames@gmail.com</a>
-                </p>
+            <article class="post qa">
+                <h3>How long did it take to make?</h3>
+                <p></p>
+                <hr>
+                <h3></h3>
+                <p></p>
             </article>
         </section>
     </main>
     <!-- Navigation -->
     <aside>
-        <a class="button-1">Games</a>
+        <a class="button-1">Top</a>
         <a class="button-2">About</a>
         <a class="button-3">Q/A</a>
-        <a class="button-4">Contact</a>
         <a class="play">Play!</a>
     </aside>
     <footer>
-        <a class="button-1">Games</a>
+        <a class="button-1">Top</a>
         <a class="button-2">About</a>
         <a class="button-3">Q/A</a>
-        <a class="button-4">Contact</a>
         <a class="play">Play!</a>
     </footer>
-    <script src="main.js" type="module"></script>
+    <script src="../main.js" type="module"></script>
 </body>
 </html>
