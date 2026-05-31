@@ -163,77 +163,73 @@
     <main id="board">
         <section id="section-1">
             <hr class="section-break">
-            <h2>Dragons Don't Like Tetris</h2>
-            <article class="post">
-                <time datetime="2026-05-12">May 12, 2026</time>
-                <hr>
-                <figure>
+            <details open>
+                <summary><h2>Dragons Don't Like Tetris</h2></summary>
+                <article class="post details-content">
+                    <time datetime="2026-05-12">May 12, 2026</time>
+                    <hr>
+                    <figure>
                     <a href="https://100sidedice.github.io/DragonsDontLikeTetris/" target="_blank" rel="noopener noreferrer">
                         <img src="../Assets/GameImages/DragonsDontLikeTetris.png" alt="Dragons Don't Like Tetris">
                     </a>
                     <figcaption>A arcade game where you play as a dragon with the sole goal of destroying tetris.</figcaption>
                 </figure>
             </article>
+            </details>
         </section>
         <section id="section-2">
             <hr class="section-break">
-            <h2>About</h2>
-            <article class="panel">
-                <h3>Dragons Don't Like Tetris!</h3>
-                <hr>
-                <section>
+            <details open>
+                <summary><h2>About</h2></summary>
+                <article class="panel details-content">
+                    <h3>Dragons Don't Like Tetris!</h3>
+                    <hr>
                     <p>Dragons Don't like tetris is a simple, fast paced arcade game where you play as a dragon and try to destroy falling tetris pieces to gain power, at certain power levels, you gain abilities like regen & multishot.</p>
-                </section>
-                <h3>Development</h3>
-                <hr>
-                <section>
-                    <h4>Itch.io falling blocks game jam</h4>
+                    <h3>Development</h3>
                     <hr>
                     <section>
+                        <h4>Itch.io falling blocks game jam</h4>
+                        <hr>
                         <p>
                             This was a 9-day long game jam with the theme of "falling blocks". I wanted a reletivly simple game that still was fun to play & decently impressive technically.
                             My original concept was a puzzle adventure game where you play as a tetrimino and have to "fit in" to different enviroments, but it didn't seem feasable for me at the time for my skill level, so I pivoted to this idea.
                         </p>
-                    </section>
-                    <h4>The AI</h4>
-                    <hr>
-                    <section>
+                        <h4>The AI</h4>
+                        <hr>
                         <p>
                             The AI uses a simple heuristic system to determing where to place pieces. It has no lookahead and only considers the current position.
                             The weight groups are as follows: # of edges touching, # holes, # line clears, # of blocks in a row, penalty for having a 1-column gap, penalty for leaving overhangs, and overall bumpiness.
                             It's record in testing for me was surviving 45 seconds at level 29 speeds (also known as the kill screen in tetris - 1 frame per grid tile descent).
                         </p>
-                    </section>
-                    <h4>Post game jam development</h4>
-                    <section>
+                        <h4>Post game jam development</h4>
                         <hr>
                         <p>
                             A game's story does not end when the game jam ends. I had gave the game about a month of extra development time after the jam period to add polish.
                         </p>
-                    </section>
-                    <h4>A secret feature</h4>
-                    <section>
+                        <h4>A secret feature</h4>
                         <p>
                             There is no UI for this, but click the top left corner of the game's screen to open a inline console and then type 'enablecolab' in the bottom bar.
                         </p>
                     </section>
-                </section>
 
-            </article>
+                </article>
+            </details>
         </section>
         <section id="section-3">
             <hr class="section-break">
-            <h2>Q/A</h2>
-            <article class="panel">
-                <h3>How long did it take to make?</h3>
-                <p>It was a 9-day game jam, then another month of development for polish.</p>
-                <hr>
-                <h3>What inspired the game?</h3>
-                <p>The game was inspired by the jam's theme of "falling blocks", and the idea for the dragon was from me and my friends playing D&D.</p>
-                <h4>How long does the game take to play?</h4>
-                <p>The game takes approximately 10-15 minutes to complete, depending on your skill level. However, after you beat the game, you can try playing with modifiers, which can raise the total time to a few hours from difficulty.
-                </p>
-            </article>
+            <details open>
+                <summary><h2>Q/A</h2></summary>
+                <article class="panel details-content">
+                    <h3>How long did it take to make?</h3>
+                    <p>It was a 9-day game jam, then another month of development for polish.</p>
+                    <hr>
+                    <h3>What inspired the game?</h3>
+                    <p>The game was inspired by the jam's theme of "falling blocks", and the idea for the dragon was from me and my friends playing D&D.</p>
+                    <h4>How long does the game take to play?</h4>
+                    <p>The game takes approximately 10-15 minutes to complete, depending on your skill level. However, after you beat the game, you can try playing with modifiers, which can raise the total time to a few hours from difficulty.
+                    </p>
+                </article>
+            </details>
         </section>
     </main>
     <!-- Navigation -->
