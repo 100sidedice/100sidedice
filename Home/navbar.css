@@ -29,11 +29,12 @@ aside a {
     transform: rotate(var(--button-tilt-deg));
     transition: transform 200ms ease;
     outline: var(--button-outline-width) solid var(--button-outline-color);
-    color: var(--text-color);
+    color: var(--button-text-color);
 }
 aside a:hover {
     transform: rotate(var(--button-hover-tilt-deg));
     background: linear-gradient(to bottom, var(--button-hover-gradient-start), var(--button-hover-gradient-end));
+    color: var(--button-hover-text-color);
     outline: var(--button-hover-outline-width) solid var(--button-hover-outline-color);
     cursor: pointer;
 }
@@ -41,7 +42,7 @@ aside a:active {
     transform: rotate(var(--button-active-tilt-deg)) scale(0.9);
     background: linear-gradient(to bottom, var(--button-active-gradient-start), var(--button-active-gradient-end));
     outline: var(--button-active-outline-width) solid var(--button-active-outline-color);
-    color: var(--text-color-soft);
+    color: var(--button-active-text-color);
     user-select: none;
     cursor:grabbing;
 }
@@ -72,12 +73,13 @@ footer a {
     transform: rotate(var(--button-tilt-deg));
     transition: transform 200ms ease;
     outline: var(--button-outline-width) solid var(--button-outline-color);
-    color: var(--text-color);
+    color: var(--button-text-color);
     min-height: 90%;
 }
 footer a:hover {
     transform: rotate(var(--button-hover-tilt-deg));
     background: linear-gradient(to bottom, var(--button-hover-gradient-start), var(--button-hover-gradient-end));
+    color: var(--button-hover-text-color);
     outline: var(--button-hover-outline-width) solid var(--button-hover-outline-color);
     cursor: pointer;
 }
@@ -85,7 +87,7 @@ footer a:active {
     transform: rotate(var(--button-active-tilt-deg)) scale(0.9);
     background: linear-gradient(to bottom, var(--button-active-gradient-start), var(--button-active-gradient-end));
     outline: var(--button-active-outline-width) solid var(--button-active-outline-color);
-    color: var(--text-color-soft);
+    color: var(--button-active-text-color);
     user-select: none;
     cursor:grabbing;
 }

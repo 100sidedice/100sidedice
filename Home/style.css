@@ -1,17 +1,20 @@
 :root {
     /** Globals **/
         --font-family: 'Arial', sans-serif;
+            --button-text-color: white;
         --text-color: white;
         --background-color: #0c011b;
         --border-width: 0.5rem;
         --border-color: #7f0c8e55;
         --text-color-muted: #d8cbe3;
         --text-color-soft: #b993ab;
+            --button-hover-text-color: white;
         --text-color-subtle: #a280b1;
         --text-color-dim: #444;
 
     /** Base Theme **/
         --theme-surface-gradient-start: #7f0c8e55;
+            --button-active-text-color: var(--text-color-soft);
         --theme-surface-gradient-end: #4a055355;
         --theme-accent-gradient-start: #a434b355;
         --theme-accent-gradient-end: #6e1b7955;
@@ -65,6 +68,9 @@
         --post-divider-color: rgba(255, 255, 255, 0.12);
         --post-gradient-start: var(--panel-gradient-start);
         --post-gradient-end: var(--panel-gradient-end);
+        --post-indent-color: #dd00ff;
+        --post-indent-hover-color: #5800bc;
+        --post-indent-width: var(--post-outline-width);
 
         /* Post outlines (template - transparent by default) */
             --post-outline-color: transparent;
@@ -84,6 +90,9 @@
         --shop-header-text-color: #efe6f5;
         --shop-divider-color: rgba(255, 255, 255, 0.18);
         --shop-row-separator-color: rgba(255, 255, 255, 0.12);
+        --shop-row-text-color: white;
+        --shop-row-hover-text-color: white;
+        --shop-row-active-text-color: var(--text-color-soft);
         --shop-row-outline-color: #bd7dc588;
         --shop-row-outline-width: 1px;
 
@@ -104,7 +113,6 @@
             --shop-row-active-gradient-end: var(--button-active-gradient-end);
             --shop-row-active-outline-width: var(--shop-row-outline-width);
             --shop-row-active-outline-color: var(--shop-row-outline-color);
-            --shop-row-active-text-color: var(--text-color-soft);
 }
 
 html, body {

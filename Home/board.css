@@ -124,7 +124,11 @@ article p {
 .panel p {
     margin-left: 0;
     padding-left: 0.75rem;
-    border-left: var(--post-outline-width) solid var(--post-divider-color);
+    border-left: var(--post-indent-width) solid var(--post-indent-color);
+    transition: border-left-color 150ms ease;
+}
+.panel p:hover {
+    border-left-color: var(--post-indent-hover-color);
 }
 .post hr {
     width: 60%;

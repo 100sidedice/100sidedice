@@ -33,6 +33,7 @@
 
     /** Buttons **/
         /* Buttons - Default */
+            --button-text-color: white;
             --button-gradient-start: #990000;
             --button-gradient-end: #330000;
             --button-outline-color: rgb(200, 0, 0);
@@ -41,6 +42,7 @@
             --button-border-radius: 1em;
             
         /* Buttons - Hover */
+            --button-hover-text-color: #ffe6e6;
             --button-hover-gradient-start: #d80000;
             --button-hover-gradient-end: #8b0000;
             --button-hover-outline-color: rgb(200, 0, 0);
@@ -48,6 +50,7 @@
             --button-hover-tilt-deg: -1deg;
             
         /* Buttons - Active */
+            --button-active-text-color: var(--text-color-soft);
             --button-active-outline-color: #888888FF;
             --button-active-outline-width: var(--theme-accent-active-outline-width);
             --button-active-gradient-start: #5b0000;
@@ -65,6 +68,9 @@
         --post-divider-color: rgba(255, 255, 255, 0.12);
         --post-gradient-start: var(--panel-gradient-start);
         --post-gradient-end: var(--panel-gradient-end);
+        --post-indent-color: #6f6f6f;
+        --post-indent-hover-color: #8a8a8a;
+        --post-indent-width: var(--post-outline-width);
 
         /* Post outlines */
             --post-outline-color: var(--theme-accent-outline-color);
@@ -84,6 +90,9 @@
         --shop-header-text-color: #efe6f5;
         --shop-divider-color: rgba(255, 255, 255, 0.18);
         --shop-row-separator-color: rgba(255, 255, 255, 0.12);
+        --shop-row-text-color: white;
+        --shop-row-hover-text-color: #ffe6e6;
+        --shop-row-active-text-color: var(--text-color-soft);
         --shop-row-outline-color: var(--button-outline-color);
         --shop-row-outline-width: var(--button-outline-width);
 
@@ -104,7 +113,6 @@
             --shop-row-active-gradient-end: var(--button-active-gradient-end);
             --shop-row-active-outline-width: var(--shop-row-outline-width);
             --shop-row-active-outline-color: var(--shop-row-outline-color);
-            --shop-row-active-text-color: var(--text-color-soft);
 }
 
 html, body {
