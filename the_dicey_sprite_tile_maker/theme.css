@@ -1,0 +1,140 @@
+:root {
+    /** Globals **/
+        --font-family: 'Arial', sans-serif;
+        --text-color: #ffffff;
+        --background-color: #0c011b00;
+        --border-width: 0.5rem;
+        --border-color: #fefeff66;
+        --text-color-muted: #d0b48f;
+        --text-color-soft: #b89468;
+        --text-color-subtle: #9e744b;
+        --text-color-dim: #ffffff;
+
+    /** Base Theme **/
+        --theme-surface-gradient-start: #003d99;
+        --theme-surface-gradient-end: #00177e;
+        --theme-accent-gradient-start: #b4b4b4FF;
+        --theme-accent-gradient-end: #7c7c7cFF;
+        --theme-accent-outline-color: #fdead7;
+        --theme-accent-outline-width: 0.2rem;
+        --theme-accent-active-gradient-start: #3d3d3dFF;
+        --theme-accent-active-gradient-end: #272727FF;
+        --theme-accent-active-outline-color: #7f5734;
+        --theme-accent-active-outline-width: var(--theme-accent-outline-width);
+
+    /** Header **/
+        --header-gradient-start: var(--theme-surface-gradient-start);
+        --header-gradient-end: var(--theme-surface-gradient-end);
+        --header-border-color: var(--theme-surface-gradient-start);
+
+    /** Main Panels **/
+        --panel-gradient-start: #4f95f0;
+        --panel-gradient-end: #488dce;
+
+    /** Buttons **/
+        /* Buttons - Default */
+            --button-text-color: #d7e6f3;
+            --button-gradient-start: #7989b4;
+            --button-gradient-end: #4e5474;
+            --button-outline-color: #ffffff;
+            --button-outline-width: var(--theme-accent-outline-width);
+            --button-tilt-deg: 0deg;
+            --button-border-radius: 1em;
+            
+        /* Buttons - Hover */
+            --button-hover-text-color: #f1d8b0;
+            --button-hover-gradient-start: #a17847;
+            --button-hover-gradient-end: #74502d;
+            --button-hover-outline-color: #8a5a33;
+            --button-hover-outline-width: var(--theme-accent-outline-width);
+            --button-hover-tilt-deg: -1deg;
+            
+        /* Buttons - Active */
+            --button-active-text-color: #cfab7a;
+            --button-active-outline-color: #4f2f18;
+            --button-active-outline-width: var(--theme-accent-active-outline-width);
+            --button-active-gradient-start: #6f4728;
+            --button-active-gradient-end: #422613;
+            --button-active-tilt-deg: 1deg;
+
+    /** Alerts **/
+        --alert-outline-color: #ff000033;
+        --alert-gradient-start: #8e0c0c55;
+        --alert-gradient-end: #53050555;
+
+    /** Board / Post **/
+        --media-hover-outline-color: #00b3ffff;
+        --media-active-outline-color: rgb(0, 59, 84);
+        --post-divider-color: #ffffffFF;
+        --post-gradient-start: #2562b1;
+        --post-gradient-end: #134279;
+        --post-indent-color: #147cc2;
+        --post-indent-hover-color: #8a8a8a;
+        --post-indent-width: 0.2rem;
+
+        /* Post outlines */
+            --post-outline-color: var(--theme-accent-outline-color);
+            --post-outline-width: 0;
+            --post-hover-outline-color: var(--theme-accent-active-outline-color);
+            --post-hover-outline-width: 0;
+            --post-outline-offset: 0rem;
+
+    /** Link / Brand **/
+        --sts-highlight-color: #fb00ff;
+        --youtube-color: red;
+        --github-color: #ffffff;
+        --email-primary-color: #7979ff;
+        --email-secondary-color: #00ffffff;
+
+    /** Shop **/
+        --shop-header-text-color: #efe6f5;
+        --shop-divider-color: rgba(255, 255, 255, 0.18);
+        --shop-row-separator-color: rgba(255, 255, 255, 0.12);
+        --shop-row-text-color: var(--button-text-color);
+        --shop-row-hover-text-color: #eae1da;
+        --shop-row-active-text-color: #2c1b0d;
+        --shop-row-outline-color: var(--button-outline-color);
+        --shop-row-outline-width: var(--button-outline-width);
+
+        /* Shop Rows - Default */
+            --shop-row-default-gradient-start: var(--button-gradient-start);
+            --shop-row-default-gradient-end: var(--button-gradient-end);
+            --shop-row-default-outline-width: var(--button-outline-width);
+            --shop-row-default-outline-color: var(--button-outline-color);
+
+        /* Shop Rows - Hover */
+            --shop-row-hover-gradient-start: var(--button-hover-gradient-start);
+            --shop-row-hover-gradient-end: var(--button-hover-gradient-end);
+            --shop-row-hover-outline-width: var(--button-hover-outline-width);
+            --shop-row-hover-outline-color: var(--button-hover-outline-color);
+
+        /* Shop Rows - Active */
+            --shop-row-active-gradient-start: var(--button-active-gradient-start);
+            --shop-row-active-gradient-end: var(--button-active-gradient-end);
+            --shop-row-active-outline-width: var(--shop-row-outline-width);
+            --shop-row-active-outline-color: var(--shop-row-outline-color);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    background-color:#0c0c0c;
+    background-image: url(../Assets/dasmbLandscape.png);
+    background-size: cover;
+    image-rendering: pixelated;
+}
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 16em 1fr;
+}
+@media (max-width: 780px) {
+    body {
+        background-image: url(../Assets/dasmbPortrait.png);
+    }
+}
+

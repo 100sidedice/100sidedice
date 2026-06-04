@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>100sidedice</title>
+    <meta name="description" content="100sidedice is the portfolio of Elijah DeLima, a web game developer.">
+    <link rel="canonical" href="https://100sidedice.github.io/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="100sidedice">
+    <meta property="og:description" content="Browser games, software projects, and creative experiments by 100sidedice.">
+    <meta property="og:url" content="https://100sidedice.github.io/">
+    <meta property="og:image" content="https://100sidedice.github.io/Assets/profilepic.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="100sidedice">
+    <meta name="twitter:description" content="Browser games, software projects, and creative experiments by 100sidedice.">
+    <meta name="twitter:image" content="https://100sidedice.github.io/Assets/profilepic.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "100sidedice",
+      "url": "https://100sidedice.github.io/",
+      "image": "https://100sidedice.github.io/Assets/profilepic.png",
+      "sameAs": [
+        "https://www.youtube.com/@100SideDice",
+        "https://github.com/100sidedice?tab=repositories"
+      ]
+    }
+    </script>
+
+    <link rel="icon" href="../Assets/profilepic.png">
+    <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="../Home/board.css">
+    <link rel="stylesheet" href="../Home/header.css">
+    <link rel="stylesheet" href="../Home/navbar.css">
+    <link rel="stylesheet" href="../ShootTheStars/stars.css">
+</head>
+<body>
+    <!-- Background (Shoot the stars [sts]) -->
+    <canvas id="stsCanvas" width="500" height="500"></canvas>
+
+    <script>
+        (() => {
+            let myName = null;
+            let pendingError = null;
+
+            const showError = (message) => {
+                const text = `ERR: ${String(message).slice(0, 60)}`;
+                if (myName) {
+                    myName.textContent = text;
+                } else {
+                    pendingError = text;
+                }
+            };
+
+            const sendToServer = (level, message, stack = '') => {
+                const payload = JSON.stringify({
+                    source: 'browser',
+                    level,
+                    message: String(message),
+                    stack: stack ? String(stack) : '',
+                    url: location.href,
+                });
+
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon('/__log', new Blob([payload], { type: 'application/json' }));
+                    return;
+                }
+
+                fetch('/__log', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: payload,
+                    keepalive: true,
+                }).catch(() => {});
+            };
+
+            const formatConsoleArg = (value) => {
+                if (value instanceof Error) {
+                    return value.stack || value.message || String(value);
+                }
+
+                if (typeof value === 'object' && value !== null) {
+                    try {
+                        return JSON.stringify(value);
+                    } catch {
+                        return String(value);
+                    }
+                }
+
+                return String(value);
+            };
+
+            for (const level of ['log', 'info', 'warn', 'error', 'debug']) {
+                const original = console[level];
+                if (typeof original !== 'function') continue;
+
+                console[level] = (...args) => {
+                    sendToServer(level, args.map(formatConsoleArg).join(' '));
+                    return original.apply(console, args);
+                };
+            }
+
+            window.addEventListener('error', (event) => {
+                const message = event?.message || 'unknown error';
+                showError(message);
+                sendToServer('error', message, event?.error?.stack || '');
+            });
+
+            window.addEventListener('unhandledrejection', (event) => {
+                const message = event?.reason?.message || event?.reason || 'promise rejection';
+                const stack = event?.reason?.stack || '';
+                showError(message);
+                sendToServer('unhandledrejection', message, stack);
+            });
+
+            const initErrorLogger = () => {
+                myName = document.getElementById('myName');
+                if (myName && pendingError) {
+                    myName.textContent = pendingError;
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initErrorLogger, { once: true });
+            } else {
+                initErrorLogger();
+            }
+        })();
+    </script>
+    
+    <script src="../ShootTheStars/game.js" type="module"></script>
+
+    <!-- Header -->
+    <header>
+        <a class="profile-home-link" href="../" aria-label="Go to homepage">
+            <img src="../Assets/profilepic.png" alt="Profile Picture" id="profile-pic">
+        </a>
+        <h1 id="myName">100sidedice</h1>
+    </header>
+    <!--Shoot the stars item container-->
+    <div id="items-container" class="itemsHidden">
+        <p>Item1</p>
+        <p>Item2</p>
+        <p>Item3</p>
+        <p>Item4</p>
+        <p>Item4</p>
+        <p>Item4</p>
+        <p>Item4</p>
+        <p>Item4</p>
+    </div>
+    <!--Item shop container-->
+    <div id="item-shop" class="itemShopHidden">
+        
+    </div>
+
+    <!-- Main content -->
+    <main id="board">
+        <section id="section-1">
+            <hr class="section-break">
+            <details open>
+                <summary><h2>The Dicey Sprite & Tile Maker</h2></summary>
+                <article class="post details-content">
+                    <time datetime="2026-05-12">June 4th, 2026</time>
+                    <hr>
+                    <figure>
+                        <a href="https://100sidedice.github.io/The-Dicey-Sprite-and-Tile-Maker/" target="_blank" rel="noopener noreferrer">
+                            <img src="../Assets/GameImages/TheDiceySpriteTileMaker.png" alt="The Dicey Sprite & Tile Maker">
+                        </a>
+                        <figcaption>My largest project. A minimalistic, but very, very powerful pixel editor built for game development.</figcaption>
+                    </figure>
+            </article>
+            </details>
+        </section>
+        <section id="section-2">
+            <hr class="section-break">
+            <details open>
+                <summary><h2>About</h2></summary>
+                <article class="panel details-content">
+                    <h3>The Dicey Sprite & Tile Maker</h3>
+                        <hr>
+                        <p>The Dicey Sprite & Tile Maker is a minimalistic, but very, very powerful pixel editor built for game development.</p>
+                    <h3>Development</h3>
+                        <hr>
+                        <h4>Why I made The Dicey Sprite & Tile Maker</h4>
+                            <hr>
+                            <p>
+                                I started development on this project near the end of 2025, when I started started working on a new game, Dwarves are Stealing my Bread. I wanted to make a pixel art game, and simply no tool existed that fit what I needed. I needed something that I could use on my school laptop, but was also powerful enough to make all the art. 
+                                Aesprite was nice, but I could not use it on my school laptop; I needed something web based. Not only that, it doesn't have the greatest tile map tools. Pixel is web based, but highly limited. Only 1 animation, no tile map or good tile tools, and just would not cut it. 
+                                I wanted something that had the animtion power of Aesprite, the accessibility and clean interface of Piskel, and the tile map tools of Tiled. And so, I started planning out The Dicey Sprite & Tile Maker. 
+                            </p>
+                        <h4>Core ideas</h4>
+                        <hr>
+                            <p>
+                                No other program had a UX concept that would cleanly and intuitively intergrate the 3 core featues I wanted: pixel animation, tile mapping, pallet management. So I had to get creative. 
+                            </p>
+                            <p>
+                                The first big concept is reworking the idea of Selection. Ussally, selection works like this: wrap region in a box or lasso, selects object in it. Go to a sidebar or toolbar to edit the selection. That would work say for entities, but indiviudal tile transformations? Not really as much. This is what tiled did, and it felt pretty clunky.
+                                So I did this, I created a binary layer, to create Pixel Selection. If you hold Shift and drag, it selects the pixels underneath. Then, we simply transform the pixels in the selection. This changes the UX a lot. Instead of a huge toolbar with specialized tools, we just need a few transformations and ways to automate selection.
+                            </p>
+                            <p>
+                                The second big concept is the idea of Color steps. A pallet is a set of colors. If we rethink it a bit, you can get the set of colors via a set of steps. Each step is a transformation of the previous step. So you can have a base color, then a step that makes it 20% darker, then a step that makes it 20% more red, etc. 
+                                Now, hook that onto a keybind... and you have a very powerful pallet management system. Say we want a clean, pixelated gradient that goes from red to blue. In other software, you need to manually go to the color picker, select a color, change it, repeat a bunch of times. Here, with keybind-controlled color steps, you just move and press h or k as you drag the mouse. That's it.
+                                And remember Pixel Selection? It works with color steps. If you select pixels, you can transform the pixels with h/k. Making for example darkening or adjusting hue for a region extremly easy.
+                            </p>
+                            <p>
+                                These two core ideas, Pixel Selection and Color Steps, form the core of the UX. Most other features are simply making these two core ideas more powerful.
+                            </p>
+                            <p>
+                                The third major thing is having a stong keyboard-driven workflow. I didn't want to have a toolbar on the side. I hate it. It covers so much screen space. Plus they are slow. 
+                                1-5 for brush size, F to fill, l for line, o for circle, b for box, s for select color, ctrl for eyedropper, h/k for step color, 6-9 h/s/v/a, +/- step percentage, shift for selection, n for noise, d for dithering.
+                                Then it's combining & being creative with them to form new tools. Brush size goes from 1-5, so 5 is the max... But 3+5 = 8, correct? So if you hold 3 and 5, you get a brush size of 8. Holding 1, 2, and 4 gives you a brush size of 7. And so on.
+                                Custom brushes? Select region, then shift+1-5. Bam! the selection is now the brush. Want a spiral tool? Hold o (circle) and l (line). Want some variation in your brush strokes? Hold n while choosing brush size. Want to fill all? s to select all, then press F to fill. Want to select a region? Press shift+f. 
+                                Shift will always make all tools become selection tools, or use the current selection. Also, like other programs, c & v to copy and paste, and similar to blender, x to cut/delete. z to undo. The tools are designed to be combined and used creatively. If you treat them plainly, they will not seem useful. But if you combine them, they become very powerful. 
+                                For example, say you want a polygon select. Select the verticies, hold shift (selection) + l (line (plays connect the dots)) + alt (alt=fill, !alt = stroke). 
+                            </p>
+                            <p>
+                                Everything above has been only talking about pixels. But what about tiles? Tiles, are just bigger pixels... press t and zoom out. All pixel tools will scale up to a tile level.
+                                Tilemode also gets some unique tools, r to rotate, alt+f to flip, and a special tool I'll mention next.
+                            </p>
+                            <p>
+                                Making each tile in a set is kinda a pain. The baseline is 47 tiles, or if your smart then 4 corners + 4 edges + 1 inner tile in a 2x2. But still, it's quite a pain. 
+                                Not only that, in things like tiled, you have to set up the terrain brush, which can take ages with hundreds of tiles.
+                                If we press ctrl+a, it will automatically generate a set of 47 tiles based on the active tile, and the sliders in the menu. And it will still look hand drawn due to the power of color stepping.
+                                Then just press a and then placing tiles will place the correct tiles based on the neighbors. If it's inaccurate, then we press the tile types edges/corners on the sidebar to define the outside of the tile.
+                                For an example, see the image above. The grass and stone only took 30 seconds to make.
+                            </p>
+                            <p>
+                                Theres one more thing that the current tools don't do well. Large backgrounds or elements. They want a type of infinite pixel canvas. Try pressing ` to resize the frame size, and set it to 1. Now a tile would be 1 pixel.
+                                And I added special settings that make pixel-only tools like color step keybinds & the color picker work with tiles, so it's a true infinte pixel canvas.
+                            </p>
+                            <p>
+                                Now, theres one more pain point that I solved as well. You know how annoying it is to see if your map actully works well in a game? You have to export it, then import it into your game engine, then test it, then go back and edit it, then repeat. It's a pain. So I added a playtest button. Sets the active animation as the player, and you can walk around and test the map. WASD to move, simple collision. You can append --ignore to layers to make them not collidable for background or decorative layers.
+                                You can also use this to test out sprite animations by appending stuff like --walk-right or --craw to the animaion names, and it will hook them up to the movement. It's really nice for testing out animations and tilesets in a game-like environment without having to export and import into a game engine.
+                                And if that wan't enough, you can shift+click animtions and place them in the map as entities.
+                                And even more, this program allows exporting as .tmx package, Tiled's native format, so you can export your maps and use them in Tiled if you want to use Tiled's map editor features or export to a game engine that supports Tiled's format.
+                            </p>
+                </article>
+            </details>
+        </section>
+        <section id="section-3">
+            <hr class="section-break">
+            <details open>
+                <summary><h2>Q/A</h2></summary>
+                <article class="panel details-content">
+                    <h3>How long did it take to make?</h3>
+                    <p> 9 months. </p>
+                    <hr>
+                    <h3>How easy is it to use?</h3>
+                    <p> It's designed to be as easy as possible. It's very rewarding to learn; Just may take a little time to break the toolbar habit most other programs form for instead memorizing like 10 keybinds and using them creatively.</p>
+                    <h3>How much do I use it?</h3>
+                    <p> I use it daily for my game development projects. It's become an essential tool in my workflow. All the art for Dwarves Are Stealing my Bread and Paint Factory use this for just about all the art.</p>
+                    <h3> How much does it cost?</h3>
+                    <p> It's free to use & web based, but I do accept donations if you find it helpful.</p>
+                    <h3> Whats the arrow on the right side of the screen </h3>
+                    <p> Online colab. Have fun drawing with others!</p>
+                </article>
+            </details>
+        </section>
+    </main>
+    <!-- Navigation -->
+    <aside>
+        <a class="button-1">Top</a>
+        <a class="button-2">About</a>
+        <a class="button-3">Q/A</a>
+        <a class="play">Play!</a>
+    </aside>
+    <footer>
+        <a class="button-1">Top</a>
+        <a class="button-2">About</a>
+        <a class="button-3">Q/A</a>
+        <a class="play">Play!</a>
+    </footer>
+    <script src="../main.js" type="module"></script>
+</body>
+</html>
