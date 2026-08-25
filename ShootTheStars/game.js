@@ -62,6 +62,10 @@ class ShootTheStars {
         const deltaTime = currentTime - this.lastTime
         this.lastTime = currentTime
         this.accumulatedTime += deltaTime
+        // cap accumulatedTime to avoid very l o n g frame
+        if (this.accumulatedTime > 1000) {
+            this.accumulatedTime = 1000
+        }
         while (this.accumulatedTime >= this.refreshRate) {
             this.accumulatedTime -= this.refreshRate
             this.update()
